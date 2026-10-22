@@ -19,6 +19,10 @@ I built a CST Studio Suite 2023 periodic RIS unit-cell model and a separate MATL
 
 **Figure 1 — My CST cell, shown from three directions.** The top view identifies the two copper regions, central gap, horizontal slot, and RLC bridge. The side view shows the substrate and one-sided copper pattern. The oblique view helps relate the layout to the finite-thickness substrate. This clean diagram is redrawn from my CST model parameters; it is not a CST screenshot. Layer thickness is not drawn to scale.
 
+![CST Studio Suite 2023 viewport showing the assumed-OFF RIS unit cell in an oblique view](figures/cst_model_perspective.jpg)
+
+**Figure 2 — The model open in CST.** This unaltered CST viewport shows the substrate, paired patch outlines, and central lumped element in the `25fF` assumed-OFF project. The parameter list records the assumed load values; the status bar shows 4,682 tetrahedra. This image documents the CST model state and mesh display, not a measured or calibrated diode result.
+
 ### Geometry and materials
 
 | Parameter | Paper value or description | CST model used here |
@@ -79,11 +83,11 @@ These normalized array-factor values show the cost of the approximate unequal-ma
 
 ![Azimuth cut comparing ideal continuous, ideal one-bit, and approximate hardware-aware RIS control](figures/array_factor_azimuth_cut.png)
 
-**Figure 2 — Azimuth cut at theta = 25°.** The three curves compare normalized array-factor power versus azimuth. Their main beams peak near the requested phi = 15° direction. The hardware-aware case has lower peak gain and higher sidelobes than either ideal case. This is a MATLAB analytical pattern, not a CST far-field or RCS result.
+**Figure 3 — Azimuth cut at theta = 25°.** The three curves compare normalized array-factor power versus azimuth. Their main beams peak near the requested phi = 15° direction. The hardware-aware case has lower peak gain and higher sidelobes than either ideal case. This is a MATLAB analytical pattern, not a CST far-field or RCS result.
 
 ![Two-dimensional array-factor maps comparing ideal continuous, ideal one-bit, and approximate hardware-aware RIS control](figures/array_factor_2d.png)
 
-**Figure 3 — Two-dimensional steering patterns.** Each panel maps normalized power over azimuth and elevation for one control case. The bright main lobe is near (25°, 15°); sidelobe differences show how the selected complex element states reshape the pattern. The color scale is clipped at −40 dB and normalized separately in each panel. Element patterns, mutual coupling, structural scattering, and finite-array full-wave effects are not included.
+**Figure 4 — Two-dimensional steering patterns.** Each panel maps normalized power over azimuth and elevation for one control case. The bright main lobe is near (25°, 15°); sidelobe differences show how the selected complex element states reshape the pattern. The color scale is clipped at −40 dB and normalized separately in each panel. Element patterns, mutual coupling, structural scattering, and finite-array full-wave effects are not included.
 
 ### What the extension adds
 
