@@ -70,13 +70,13 @@ At the (25°,15°) target, all three array-factor cases place the sampled peak a
 
 The sidelobe value is the largest grid-sampled value outside a 15° exclusion region. It is not an integrated sidelobe-power measure. The hardware-aware case has a lower peak and higher sampled sidelobes than the ideal cases, consistent with the unequal amplitudes and non-ideal phase separation of the approximate states.
 
-![Array-factor comparison](figures/array_factor_azimuth_cut.png)
+**Figure 1 — Azimuth cut through the commanded beam.** This plot compares normalized array-factor power versus azimuth at a fixed elevation of theta=25° for ideal continuous phase control, ideal one-bit control, and the hardware-aware one-bit case. The main beam points near the requested phi=15° direction in all three cases. The approximate hardware reflection states reduce peak gain and raise some sidelobes relative to ideal control. The curves come from the analytical MATLAB array model, not a full-wave array simulation.
 
-*Normalized azimuth cut at theta=25°, produced by the MATLAB model.*
+![Array-factor comparison at theta equals 25 degrees, comparing ideal continuous, ideal one-bit, and hardware-aware one-bit phase control](figures/array_factor_azimuth_cut.png)
 
-![Array-factor pattern](figures/array_factor_2d.png)
+**Figure 2 — Two-dimensional steering patterns.** Each panel maps normalized array-factor power over azimuth phi and elevation theta for one of the three phase-control cases. The bright main lobe is near the requested (theta, phi)=(25°,15°) direction. Comparing the right panel with the two ideal cases shows how the unequal, non-ideal hardware reflection states change the sidelobe pattern. Colors are in dB and clipped at −40 dB; each panel has its own color scale. These are analytical array-factor results and do not include element patterns or mutual coupling.
 
-*Two-dimensional normalized array-factor visualization.*
+![Two-dimensional normalized array-factor power maps for ideal continuous, ideal one-bit, and hardware-aware one-bit steering](figures/array_factor_2d.png)
 
 ## Verification performed
 
@@ -130,4 +130,5 @@ The CST CSV files in this repository contain multi-mode S-parameters. They are n
 ## References
 
 See [docs/references.md](docs/references.md) for full citations and links.
+
 
