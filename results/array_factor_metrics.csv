@@ -1,0 +1,4 @@
+model,pointingError_deg,peakGain_dB_vs_ideal,maxSidelobe_dB
+Ideal continuous,0,0,-17.6352484254882
+Ideal 1-bit,0,-3.92959138301963,-16.4595183940482
+Hardware-aware 1-bit,0,-5.4000021579367,-10.6920323329973

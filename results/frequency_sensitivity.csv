@@ -1,0 +1,6 @@
+offset_GHz,assumed_phase_slope_deg_per_GHz_state0,assumed_phase_slope_deg_per_GHz_state1,assumed_magnitude_slope_per_GHz_state0,assumed_magnitude_slope_per_GHz_state1,target_theta_deg,target_phi_deg,peak_theta_deg,peak_phi_deg,pointing_error_deg,peak_gain_dB_relative_to_ideal_N2,max_sidelobe_dB_relative_to_global_outside_15deg,direction_grid_step_deg,main_lobe_exclusion_deg,grid_sample_sum_fraction_outside_15deg
+-1.0,15,-22,0.02,-0.04,25.0,15.0,25.0,15.0,0.0,-5.454313582954184,-9.056672945493649,1.0,15.0,0.37790894216899623
+-0.5,15,-22,0.02,-0.04,25.0,15.0,25.0,15.0,0.0,-5.314603528124509,-14.403535056061404,1.0,15.0,0.2088630848357276
+0,15,-22,0.02,-0.04,25.0,15.0,25.0,15.0,0.0,-5.400002157936701,-10.692032332997261,1.0,15.0,0.3247435486557178
+0.5,15,-22,0.02,-0.04,25.0,15.0,25.0,15.0,0.0,-5.714062512752035,-5.961611222574673,1.0,15.0,0.555962316492231
+1.0,15,-22,0.02,-0.04,25.0,15.0,25.0,15.0,0.0,-6.255557898787339,-2.169407380364731,1.0,15.0,0.7450908053259738
