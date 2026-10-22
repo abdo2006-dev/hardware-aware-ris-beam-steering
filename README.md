@@ -52,15 +52,6 @@ Before making hardware or performance claims, I would confirm the patch-axis ass
 
 CST reported a reduced-performance tbbmalloc warning and a high-reflection sample at 30 GHz that did not move the mesh-adaptation sample. The run completed, but those warnings remain part of its context.
 
-## Reproduction
-
-The array-factor analysis uses base MATLAB (R2019b or later):
-
-    addpath("matlab")
-    results = ris_array_model();
-
-The default complex state coefficients are approximate manual digitizations from the source paper. The optional CSV input expects frequency_GHz, state, real, and imag columns with at least two samples per state. CST exports contain multi-mode S-parameters and must be mapped to the intended state/mode before use as this input.
-
 ## References
 
 1. A. L. Goshu, P. Mursia, V. Sciancalepore, M. Di Renzo, and X. Costa-Pérez, “Realistic Evaluation of Impedance-Based RIS Modeling: Practical Insights and Applications,” *2025 19th European Conference on Antennas and Propagation (EuCAP)*, 2025. [DOI: 10.23919/EuCAP63536.2025.10999979](https://doi.org/10.23919/EuCAP63536.2025.10999979); [arXiv:2508.07098](https://arxiv.org/abs/2508.07098). The paper itself is not redistributed here.
