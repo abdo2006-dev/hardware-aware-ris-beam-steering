@@ -1,0 +1,94 @@
+{
+  "tests": [
+    {
+      "name": "400 coefficient invariant and original MATLAB indexing",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Independent rectangular-array phase alignment",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Binary quantization and 180 degree unit-state equivalence",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Complex hardware assignment retains magnitudes and phases",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Uniform phase, unity amplitude, broadside and azimuth degeneracy",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Off-axis steering and incident phase compensation",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Exact zero-perturbation coefficient and metric reproduction",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Common-reference optimization uses fair objective and does not degrade target",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Full-hemisphere scan detects binary mirror lobe",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Distinct target and global-peak metrics",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Solid-angle quadrature for constant hemisphere pattern",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Complex interpolation across phase wrap, exact frequency and zero offset",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Passive input screening and forbidden extrapolation",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Equation 1 phase optimum versus printed Equation 6",
+      "passed": true,
+      "error": ""
+    },
+    {
+      "name": "Historical target-gain regression under corrected metric names",
+      "passed": true,
+      "error": ""
+    }
+  ],
+  "passed": true,
+  "MATLAB": "26.2.0.3386108 (R2026b)",
+  "numeric_evidence": {
+    "original_MATLAB_coefficient_shape": [
+      400,
+      1
+    ],
+    "zero_noise_max_metric_difference": 0,
+    "constant_hemisphere_integral": 6.2825473049909482,
+    "equation1_optimum_channel_magnitude": 400,
+    "printed_equation6_channel_magnitude": 8.0517399181939879,
+    "fixed_reference_binary_target_gain_dB": -3.9295913830196239,
+    "fixed_reference_paper_target_gain_dB": -5.4000021579367008
+  },
+  "generated_UTC": "2026-10-22 19:12:36"
+}

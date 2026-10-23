@@ -1,142 +1,207 @@
-# Hardware-Aware RIS Beam Steering
+# Hardware-aware RIS beam steering
 
-I built a CST Studio Suite 2023 periodic RIS unit-cell model and a separate MATLAB 20 × 20 array-factor study, guided by Goshu et al.'s 2025 paper on realistic impedance-based RIS modeling.
+### Scientific validation, CST unit-cell diagnostics and reproducible MATLAB analysis
 
-**The design dimensions and frequency sweep are paper-guided, but this is not a full reproduction of the paper's reflection states or array RCS.** My CST load cases produce almost identical reflection coefficients near the paper's 26.168 GHz operating point. The MATLAB hardware-aware case instead uses approximate reflection coefficients digitized from the paper's Fig. 2. I keep these two evidence paths separate below.
+I investigate how a limited set of complex reflection states changes predicted RIS beam steering. I connect actual CST 2023 unit-cell evidence to a tested 20 × 20 independent-element array model and an explicitly illustrative impedance-circuit extension.
 
-## Project at a glance
+**Research status:** the analytical correctness gate passes. The current CST model has not established reproduction of the reference paper. Failed benchmarks and unresolved physical assumptions remain visible. No physical measurements or validated finite-array RCS are claimed.
 
-| Work | What I implemented | Evidence and status |
+| Evidence gate | Status | Evidence |
 |---|---|---|
-| Periodic CST cell | Paired copper patches, central gap and slot, RT/duroid 5880 substrate, lumped series RLC bridge, periodic boundaries, two Floquet modes | Three CST projects and complex S-parameter exports; geometry is a documented interpretation of the paper drawing |
-| CST frequency study | 24–30 GHz frequency-domain sweep with normal-incidence Floquet excitation | OFF-scenario run: 8 calculated adaptive samples and 1,001 interpolated points; 4,682 tetrahedra |
-| MATLAB array study | Independent-element 20 × 20 array; ideal continuous, ideal one-bit, and paper-state hardware-aware controls | Normalized array-factor figures and metrics; not full-wave RCS |
-| Extension | Target-angle, state phase-separation, frequency-slope, and random amplitude/phase sensitivity sweeps | CSV outputs; some sweeps use assumed inputs and are exploratory |
+| MATLAB correctness | **PASS** | [15 automated tests](results/validated_v2/tests.json) |
+| Zero-perturbation identity | **PASS** | Exactly zero metric difference from the deterministic evaluator |
+| Actual CST diagnostics | **PASS execution** | [Controlled load tests](results/cst_diagnostics/open_short_comparison.csv) |
+| Export checks | **PASS numerical screens** | [Power balance, passivity and V/I](results/cst_diagnostics/manifest.json) |
+| Mesh investigation | **PROVISIONAL physical acceptance** | [Actual adaptive history](results/cst_diagnostics/adaptive_mesh_history.csv) |
+| Paper Figure 2 reproduction | **FAIL current benchmark** | [Matched-frequency comparison](results/cst_diagnostics/paper_matched_frequency_comparison.csv) |
+| Exact diode and polarization | **PROVISIONAL** | [Physical audit](docs/CST_PHYSICAL_AUDIT.md) |
+| Impedance extension | **PASS algebra / assumed scenario** | [Four-port analysis](results/validated_v2/illustrative_impedance_example/manifest.json) |
 
-## CST unit-cell design
+Work proceeds on `research/validation-and-cst-repair`. Historical work is preserved at main commit `4d61322`. No unvalidated findings are promoted to main.
 
-![Three views of the CST RIS unit-cell geometry: top copper layout, side layer stack, and oblique cell view](figures/cst_unit_cell_views.svg)
+## What I built in CST
 
-**Figure 1 — My CST cell, shown from three directions.** The top view identifies the two copper regions, central gap, horizontal slot, and RLC bridge. The side view shows the substrate and one-sided copper pattern. The oblique view helps relate the layout to the finite-thickness substrate. This clean diagram is redrawn from my CST model parameters; it is not a CST screenshot. Layer thickness is not drawn to scale.
+![Actual CST connected diagnostic geometry](cst/experiments/D006_connected_open/cad_current_view.png)
 
-![CST Studio Suite 2023 viewport showing the assumed-OFF RIS unit cell in an oblique view](figures/cst_model_perspective.jpg)
+**Figure 1. Actual CST viewport, connected diagnostic topology.** Two slotted copper patches sit on a 0.5-mm RT/duroid 5880 substrate, with a central lumped load and a continuous backplane. Added overlap pads test connectivity and remain fabrication assumptions. This native export is distinct from the historical redrawn three-view schematic. Its side view omitted the ground and is superseded.
 
-**Figure 2 — The model open in CST.** This unaltered CST viewport shows the substrate, paired patch outlines, and central lumped element in the `25fF` assumed-OFF project. The parameter list records the assumed load values; the status bar shows 4,682 tetrahedra. This image documents the CST model state and mesh display, not a measured or calibrated diode result.
-
-### Geometry and materials
-
-| Parameter | Paper value or description | CST model used here |
+| Feature | Implemented value | Interpretation / limitation |
 |---|---|---|
-| Lattice pitch | 5.35 mm | 5.35 mm square periodic cell |
-| Substrate | Rogers RT/duroid 5880; εr = 2.2; tanδ = 0.0009; 0.5 mm thick | Same nominal values |
-| Copper pattern | Two patches, a separating gap and a horizontal slot | Two patch regions; PL = 3.5 mm, interpreted combined width PW = 2.8 mm, GW = 0.3 mm, slot SW × SL = 2.0 × 0.4 mm |
-| Copper and terminal details | Not fully specified in the paper | 35 µm copper and 0.1 mm terminal width are modeling assumptions |
-| Periodic excitation | Floquet ports for a single cell | Periodic X/Y boundaries; electric Zmin and expanded-open Zmax; two Floquet modes at normal incidence |
-| Frequency | Design described around 28 GHz; reported balanced cell point is 26.168 GHz | Frequency-domain sweep from 24 to 30 GHz, covering both frequencies |
+| GL / periodic pitch | 5.35 mm | Infinite square lattice |
+| PL / PW | 3.5 / 2.8 mm | Y extent / combined X extent; source mapping provisional |
+| GW / SW / SL | 0.3 / 2.0 / 0.4 mm | Gap / slot length / slot width |
+| Substrate | 0.5 mm, εr = 2.2, tanδ = 0.0009 | Constant material approximation |
+| Copper | 35 μm, 5.8×10⁷ S/m | Thickness assumption; legacy bulk-material warning |
+| Ground | Continuous copper + electric Zmin | Source interpretation unresolved |
+| Boundaries | Periodic X/Y, expanded open Zmax | No finite-array edge validation |
+| Excitation | Two fundamental Floquet modes, normal incidence | Physical polarization requires verification |
+| ON proxy | Series 5.2 Ω + 30 pH | Not calibrated at the operating frequency |
+| OFF proxy | Series 30 pH + 25 fF, R = 0 | Assumed capacitance and loss model |
 
-The paper's drawing does not fully specify every axis assignment and fabrication detail in prose. I record the interpreted dimensions and assumptions in [model and methods](docs/model-and-methods.md), rather than presenting them as measured fabrication data.
+The [source-to-model audit](docs/CST_PHYSICAL_AUDIT.md) records unresolved mappings. Construction history places the original diode lands and patch arms in edge-only contact. This motivated controlled tests before any tuning.
 
-## What the researchers reported
+![Native CST XY view of the original topology](cst/experiments/D009_ON_strict/cad_xy_copper_section.png)
 
-The reference paper compares two ways to choose states for a 20 × 20 RIS: a conventional phase-shift channel model and an impedance-based electromagnetic model. The authors then evaluate the resulting configurations with full-wave CST radar cross-section (RCS) patterns. Their central physical finding is **structural scattering**: the RIS structure can scatter energy in the specular direction even when the tunable loads are matched, so optimizing the intended beam does not necessarily remove this unwanted lobe.
+**Original-topology XY view at the copper midplane.** This native CST view exposes the separate outer patches, arms and diode lands. It differs from the connected diagnostic perspective above. Orthogonal side-section framing remains a display limitation, so cropped exports are excluded from the presentation.
 
-The paper reports these example outcomes:
+## Actual load and mesh diagnostics
 
-| Paper scenario | Intended-lobe result | Structural-scattering result | Interpretation in the paper |
-|---|---:|---:|---|
-| Conventional model, normal incidence, azimuth steering to 30°/45° | About −1 dB m² | About 10.7 dB m² near the specular direction | The unwanted specular lobe can be much stronger than the intended lobe |
-| Conventional model, tilted incidence (elevation −60°, azimuth −30°) | About −4 dB m² | Reduced to about 6.2 dB m² | Deployment geometry can reduce interference, but does not remove the effect |
-| Impedance-based model, normal incidence, 45° azimuth steering | About 2 dB m² | Similar maximum level, with a less angularly dispersed lobe | The intended lobe improves, while structural scattering remains |
-| Impedance-based model, tilted incidence | About −2 dB m² | About 6 dB m², directed toward roughly 60° elevation | The structural lobe is displaced away from the intended receiver direction |
+![Open versus short sensitivity](results/cst_diagnostics/open_short_polarization.png)
 
-The values above are reported by the paper for its full-wave RCS examples (Figs. 3–6; units as printed there). They are not measurements from my project. The paper's Fig. 2 also shows the cell's two PIN-diode reflection states. Near 26.168 GHz, my approximate digitization of those curves gives ΓON ≈ 0.96∠38° and ΓOFF ≈ 0.74∠−156°. These are approximate figure readings, not a tabulated calibration.
+**Figure 2. Actual CST load tests at 26.168 GHz.** Within each topology, only the load changes: approximate short 0.001 Ω versus approximate open 10⁹ Ω, L = C = 0. Initial meshes support a diagnostic comparison, not mesh independence.
 
-The paper's Table I also lists R0 = 5.2 Ω, L = 30 pH, and a tunable capacitance range of 0.025–0.03 pF for its impedance-based optimization model. That tunable-load range is **not the same thing** as the PIN diode's ON/OFF equivalent circuits in the unit-cell discussion. I preserve that distinction in this comparison.
+| Topology | Mode 1 phase change | Mode 2 phase change |
+|---|---:|---:|
+| Original | 0.001509° | 8.456462° |
+| Added connections | 0.002820° | 10.107570° |
 
-## My CST results compared with the paper
+The load couples much more strongly to mode 2. Added copper connections alone do not recover the large published state separation. I have not established one complete causal explanation for the failed reproduction.
 
-| Comparison | Paper benchmark | My CST result | Assessment |
-|---|---|---|---|
-| Cell size and substrate | 5.35 mm pitch and 0.5 mm RT/duroid 5880 | Same nominal pitch and substrate values | **Broadly matched** at the unit-cell geometry/material level, subject to the drawing interpretation and stated fabrication assumptions |
-| Frequency coverage | Around-28 GHz design; balanced reflection point at 26.168 GHz | 24–30 GHz sweep; nearest exported point is 26.166 GHz | **Frequency range matched;** the nearby sample is 2 MHz below the reported balanced point |
-| Reflection magnitude at 26.166 GHz | Fig. 2 is approximately |ΓON| ≈ 0.96 and |ΓOFF| ≈ 0.74 near 26.168 GHz | My ON-proxy |S11| ≈ 0.9916; assumed-OFF |S11| ≈ 0.9913 | **Not matched:** my two CST proxies are both near unit magnitude |
-| Reflection phase at 26.166 GHz | Fig. 2 digitization used here is about 38° and −156° | ON-proxy phase ≈ 87.61°; assumed-OFF phase ≈ 90.49° | **Not matched:** my CST phase-state separation is about 2.87°, versus roughly 166° in the paper-curve digitization |
-| Array far field / RCS | Full-wave 20 × 20 RCS patterns, including intended and structural-scattering lobes | No finite-array CST RCS run in this project | **Not reproduced:** the MATLAB maps are normalized array factors and cannot be compared numerically in dB m² |
+The completed exports pass the two-mode reflected-power screen of ≤1.001. Power balances agree to better than 7.3×10⁻⁷ relative residual, and V − ZI to below 3×10⁻¹⁶. [Per-run evidence](results/cst_diagnostics/simulation_summary.csv) includes complex coefficients, current, voltage, losses and mesh records.
 
-My CST baseline is an ON proxy (R = 5.2 Ω, L = 30 pH, C = 0). My illustrative OFF scenario uses R = 0 Ω, L = 30 pH, and an assumed C = 25 fF. These simplified load cases do not reproduce the paper's plotted state pair. Separately, they do not implement the paper's Eq. (12) impedance-optimization sweep with R0 = 5.2 Ω and C ranging from 25 to 30 fF. That model distinction explains why covering the same frequency does not produce the same reflection states.
+![Adaptive mesh investigation](results/cst_diagnostics/mesh_refinement.png)
 
-For the OFF scenario, CST reported 8 calculated adaptive frequency samples and 1,001 interpolated sweep points. The final displayed mesh contained 4,682 tetrahedra. Exported power accounting closes to a maximum residual of 2.78 × 10⁻¹⁷ W; accepted power differs from dielectric plus metal loss by at most 2.25 × 10⁻⁶ W. These checks support the internal consistency of the exported run, but one documented mesh level does not demonstrate mesh independence.
+**Figure 3. Actual adaptive history at directly solved 26.168 GHz.** The initial adaptive ON run progressed from 2,910 to 35,643 tetrahedra. The strict ON run reached 46,198 tetrahedra with two consecutive all-S changes below 0.005. Solver stopping and complete physical acceptance remain distinct. Single-frequency results do not establish broadband convergence.
 
-## My MATLAB array study and engineering extension
+After strict refinement, mode-1 phases are 110.19° ON and 110.37° OFF, a separation of about **0.18°**. The old 2.87° contrast was not stable under refinement. Mode 2 gives about 7.65° separation. Neither pair approaches the published separation.
 
-I use an independent-element array factor to ask a narrower question: how do non-ideal complex state coefficients change steering patterns compared with ideal phase control? At 26.168 GHz, the MATLAB model uses approximate paper-curve coefficients Γ0 = 0.96∠38° and Γ1 = 0.74∠−156°. It does **not** use the CST coefficients above, because those CST states do not form the paper-like phase pair.
+## Published benchmark versus my CST results
 
-For a 20 × 20 array steered to (theta, phi) = (25°, 15°), the grid-sampled metrics are:
+Reference: Goshu et al., *Realistic Evaluation of Impedance-Based RIS Modeling: Practical Insights and Applications*, EuCAP 2025 ([author manuscript](https://arxiv.org/abs/2508.07098)). The paper compares conventional and impedance-based optimization with full-wave array RCS and discusses structural scattering.
 
-| Control case | Pointing error on 1° grid | Peak gain vs. ideal N² | Maximum sampled sidelobe |
-|---|---:|---:|---:|
-| Ideal continuous phase | 0° | 0.00 dB | −17.64 dB |
-| Ideal one-bit phase | 0° | −3.93 dB | −16.46 dB |
-| Approximate paper-state hardware-aware one-bit | 0° | −5.40 dB | −10.69 dB |
+![Approximate published reflection curves](results/cst_diagnostics/paper_reference_curves.png)
 
-These normalized array-factor values show the cost of the approximate unequal-magnitude, non-ideal phase states in this analytical model. The sidelobe metric is the largest sampled value outside a 15° exclusion region; it is not integrated sidelobe power.
+**Figure 4. Approximate digitization of the supplied Figure 2.** The generator records PDF hash, pixel calibration, legend exclusions and phase unwrapping. Estimated raster reading resolution is about 0.004 magnitude and 2° phase, with additional unknown plotting and registration error. These curves were not calculated by my CST model.
 
-![Azimuth cut comparing ideal continuous, ideal one-bit, and approximate hardware-aware RIS control](figures/array_factor_azimuth_cut.png)
-
-**Figure 3 — Azimuth cut at theta = 25°.** The three curves compare normalized array-factor power versus azimuth. Their main beams peak near the requested phi = 15° direction. The hardware-aware case has lower peak gain and higher sidelobes than either ideal case. This is a MATLAB analytical pattern, not a CST far-field or RCS result.
-
-![Two-dimensional array-factor maps comparing ideal continuous, ideal one-bit, and approximate hardware-aware RIS control](figures/array_factor_2d.png)
-
-**Figure 4 — Two-dimensional steering patterns.** Each panel maps normalized power over azimuth and elevation for one control case. The bright main lobe is near (25°, 15°); sidelobe differences show how the selected complex element states reshape the pattern. The color scale is clipped at −40 dB and normalized separately in each panel. Element patterns, mutual coupling, structural scattering, and finite-array full-wave effects are not included.
-
-### What the extension adds
-
-I extended the basic comparison with controlled array-factor sweeps:
-
-- **Target direction:** six requested angles. The approximate hardware-aware case has up to 2° grid-sampled pointing error in the exported sweep; the ideal controls remain on the requested grid for these cases.
-- **State phase separation:** 140° to 220°, to examine how departure from a 180° binary pair changes peak gain and sidelobes.
-- **Frequency variation:** coefficient slopes are imposed around 26.168 GHz to expose sensitivity. These slopes are hypothetical inputs, not extracted from CST or measured hardware.
-- **State uncertainty:** seeded phase and amplitude perturbations are evaluated over 40 trials per setting. These runs are exploratory; the zero-perturbation summary currently does not numerically reproduce the deterministic baseline metrics, so I do not use it as headline evidence pending reconciliation.
-
-This extension makes the consequences of complex hardware states visible in a simple array model. It does not reproduce the paper's mutual-impedance optimization, structural-scattering mechanism, or RCS, and I make no claim of scientific novelty without a separate literature review.
-
-## Verification and remaining limits
-
-| Check | Status | Evidence / limitation |
+| At 26.168 GHz | ON magnitude / phase | OFF magnitude / phase |
 |---|---|---|
-| CST OFF-state broadband run | Completed | 8 calculated samples, 1,001 interpolated points, 4,682 tetrahedra |
-| Exported power accounting | Passed for the recorded OFF run | Residual 2.78 × 10⁻¹⁷ W; accepted-loss difference 2.25 × 10⁻⁶ W |
-| Mesh convergence | Not established | Only one adaptive mesh level is documented |
-| Paper unit-cell reflection pair | Not reproduced | Current CST proxies give only about 2.87° phase separation near 26.168 GHz |
-| MATLAB steering cases | Completed as analytical array factors | Approximate reflection coefficients digitized from paper Fig. 2; no mutual coupling or element pattern |
-| Independent numerical cross-check | Completed in prior analysis | Maximum absolute difference 3.91 × 10⁻¹⁴ for the checked baseline array-factor outputs |
-| Random uncertainty export | Needs reconciliation | Its zero-perturbation metrics differ from the deterministic baseline table |
-| Paper's 20 × 20 RCS and structural scattering | Not reproduced | No finite-array full-wave CST RCS run is included |
+| Approximate paper digitization | 0.96383 / 35.07° | 0.75205 / −131.28° |
+| Strict adaptive CST, mode 1 | 0.98823 / 110.19° | 0.98821 / 110.37° |
+| Strict adaptive CST, mode 2 | 0.99602 / −27.86° | 0.99982 / −35.51° |
 
-The next steps for a closer reproduction are to resolve the exact PIN-diode/package equivalent circuits at 26 GHz, match the paper's state definitions and load configurations, refine and compare CST meshes, and then run the finite-array RCS scenarios with the paper's illumination and steering angles. Until those steps are complete, my conclusions are limited to this unit-cell proxy study and the separate analytical array-factor extension.
+Absolute phase comparison also requires matched reference planes. The [comparison CSV](results/cst_diagnostics/paper_matched_frequency_comparison.csv) retains complex errors and wrapped phase errors without fitting an offset. Matching one point would still not prove broadband reproduction.
 
-## Reproducing the MATLAB model
+MACOM's linked S2P data cover 2–50 GHz but use MA4AGP907 filenames and wafer/PCM metadata. Exact variant equivalence, bias and de-embedding to the CST gap remain unresolved. The SPICE presentation includes a fixture and nonlinear model. I do not treat these as a calibrated lumped junction. See [manufacturer applicability](docs/CST_PHYSICAL_AUDIT.md#manufacturer-model-applicability).
 
-With MATLAB R2019b or later, run from the repository root:
+## Repaired MATLAB analysis
 
-```matlab
-addpath("matlab")
-results = ris_array_model();
+The array lies in XY. **θ is polar angle from +Z**, and φ is azimuth from +X toward +Y. At broadside, φ = 0. Every configuration has 400 complex coefficients in a column.
+
+```text
+AF(s) = sum_m Γ_m exp[j k r_m · (s − s_inc)]
+Γ_continuous,m = exp[−j k r_m · (s_target − s_inc)]
 ```
 
-The default state coefficients are the approximate paper-figure values described above. The optional CST-file input expects `frequency_GHz,state,real,imag` columns with at least two samples per state. Map the intended Floquet reflection mode and state data into that format before using it; the raw multi-mode CST exports are not already in that input format.
+Every main pattern uses `|AF|² / 400²`. These are scalar array-factor power ratios, not dBi, realized gain, efficiency or RCS. I separate exact target power, sampled/refined peak power, spherical pointing error and the maximum outside a 15° target cone. That maximum can include a competing main beam. Solid-angle integration uses `sin(θ) dθ dφ`.
 
-## Repository contents
+![Common-reference signed polar cut](results/validated_v2/paper_digitized_reference/principal_cut_ideal_reference.png)
 
-- [`cst/`](cst/) — baseline, assumed-OFF, and mesh-check CST projects.
-- [`figures/`](figures/) — CST geometry views and MATLAB array-factor plots.
-- [`matlab/ris_array_model.m`](matlab/ris_array_model.m) — analytical array-factor code.
-- [`results/`](results/) — complex S-parameters, comparison data, array metrics, and sensitivity exports.
-- [`docs/model-and-methods.md`](docs/model-and-methods.md) — geometry, load assumptions, solver setup, and provenance.
-- [`docs/data-dictionary.md`](docs/data-dictionary.md) — result-file column and provenance notes.
-- [`docs/references.md`](docs/references.md) — paper and material/device references.
+**Figure 5. Approximate paper states, 20×20, pitch 5.35 mm, 26.168 GHz, target polar 25° / azimuth 15°.** Negative signed angle uses the opposite azimuth. Every curve shares the ideal continuous coherent reference. The competing mirror beam remains nearly equal to the requested beam.
 
-## Reference
+| Input / control | Target (dB) | Refined peak (dB) | Pointing error |
+|---|---:|---:|---:|
+| Ideal continuous | 0.000 | 0.000 | 0.000° |
+| Ideal binary, fixed reference | −3.930 | −3.925 | 0.120° |
+| Digitized paper states, fixed | −5.313 | −5.312 | 0.026° |
+| Digitized paper states, optimized | −5.302 | −5.300 | 0.073° |
+| Historical CST states, fixed | −35.999 | −0.077 | 25.000° |
+| Strict CST mode 1, fixed | −58.727 | −0.103 | 25.000° |
+| Strict CST mode 2, fixed | −27.273 | −0.037 | 25.000° |
 
-Goshu, A. L., Mursia, P., Sciancalepore, V., Di Renzo, M., and Costa-Pérez, X., “Realistic Evaluation of Impedance-Based RIS Modeling: Practical Insights and Applications,” *2025 19th European Conference on Antennas and Propagation (EuCAP)*, 2025. [DOI: 10.23919/EuCAP63536.2025.10999979](https://doi.org/10.23919/EuCAP63536.2025.10999979). I do not redistribute the paper PDF in this repository.
+A small pointing error alone does not establish a clean single beam. Reference optimization marginally improves target power while retaining the competing lobe.
 
+![Actual historical CST coefficient consequences](results/validated_v2/cst_simulated_hardware_provisional/principal_cut_ideal_reference.png)
+
+**Figure 6. Actual historical CST coefficient input, same array and normalization.** The strongest response remains near broadside. This separately labeled provisional result prevents paper coefficients from concealing a failed hardware model. Newly refined coefficients require the physical acceptance gates before supporting stronger hardware claims.
+
+### Correctness evidence
+
+- All 15 tests pass, including complex coefficient shapes, steering, broadside degeneracy, binary limits, full-hemisphere mirror detection, complex interpolation, zero frequency offset and regressions.
+- A fresh original MATLAB run produced a column. The suspected 400×400 expansion was not observed. Explicit reshaping and assertions remove reliance on MATLAB's vector indexing rule.
+- The historical uncertainty CSV came from a separate generator with a different angular grid. The repaired shared evaluator gives **exactly zero** difference at zero noise.
+- Forty trials per setting use seed 20261022. Independent normal phase and clipped multiplicative amplitude errors are assumed scenarios, not measured fabrication statistics. CSVs include standard errors, approximate mean intervals and empirical percentiles.
+- Eq. (1), `hᴴΦg`, aligns with `φ = arg(h) − arg(g) + α`. Under the same channel definitions, the printed Eq. (6) has the opposite sign. Direct multiplication gives magnitudes 400 versus 8.05174. This identifies an algebraic convention inconsistency without claiming the authors implemented the wrong rule.
+
+[Methods and metric definitions](docs/SCIENTIFIC_VALIDATION.md)
+
+## Impedance-model extension
+
+![Illustrative coupled four-port circuit](results/validated_v2/illustrative_impedance_example/four_port_load_sweep.png)
+
+**Figure 7. Assumed reciprocal passive four-port circuit using Eq. (7).** Self impedance is 50+j20 Ω and adjacent mutual impedance 5+j12 Ω. The calculation compares diagonal and coupled assumptions while sweeping a common reactance. Its arbitrary units do not quantify this device's scattering.
+
+The extension solves `H = −z_RS (Z_SS + Z_load)^−1 z_ST` with `y0=1`, `Z_RT=0`. The matched-load term can remain nonzero at zero load reflection coefficient, illustrating Eq. (11). Reciprocity, positive-definite real impedance and direct residual identities are checked. This does not reproduce the paper's impedance optimization. Binary quantization lobes remain distinct from structural scattering.
+
+## Reproduction
+
+From the repository root in licensed MATLAB R2026b on Windows:
+
+```matlab
+addpath(fullfile(pwd, 'matlab'));
+run_research();
+```
+
+The correctness gate runs first, then regenerates analytical results under `results/validated_v2`. The digitized input is checked in. The original licensed PDF is not redistributed.
+
+```text
+python tools/digitize_figure2.py --pdf <local-paper.pdf> --pdftoppm <Poppler-executable>
+<CST-Python> cst/native_diagnostic.py <NEW_ID> --pid <CST_PID> --R 0.001
+<CST-Python> cst/export_diagnostic.py cst/experiments/<NEW_ID>
+python tools/analyze_diagnostics.py
+```
+
+Use CST 2023's installed Python 3.6 runtime and a licensed session. Every experiment needs a new ID. `--topology connected` adds the documented overlaps. `--adaptive --strict-adaptive` requests two all-S changes below 0.005. The final history block's literal load values are authoritative; legacy parameter names remain preserved.
+
+Construction histories, configurations, transparent numerical exports and redacted solver logs accompany completed runs publicly. New native CST checkpoints and expanded results remain preserved locally because the native archives embed licensing metadata. They are excluded from this public branch. The automation starts from the preserved baseline project and writes new local checkpoints. Manifests identify source hashes and generators. MATLAB hashing currently uses Windows .NET. Digitization uses NumPy, pandas, Pillow and Poppler. The converter rejects extrapolation and interpolates real/imaginary coefficients with explicit state, mode, source checkpoint and status.
+
+## Deliverables and boundaries
+
+- [Technical report](output/pdf/RIS_Scientific_Validation_Report.pdf)
+- [Professor-facing presentation](output/presentation/RIS_Scientific_Validation_v2.pptx)
+- [Verification status and actual simulations](docs/VERIFICATION_STATUS.md)
+- [Scientific methods](docs/SCIENTIFIC_VALIDATION.md)
+- [Physical audit](docs/CST_PHYSICAL_AUDIT.md)
+- [Repair log](docs/audit/repair_log.md) and [baseline inventory](docs/audit/baseline_inventory.json)
+- [Simulation summary](results/cst_diagnostics/simulation_summary.csv)
+- [Analytical results and provenance](results/validated_v2)
+
+Remaining gates include Cartesian mode-field verification, saved-refinement coefficient comparisons, material treatment, resonant sampling, exact diode applicability and source geometry. No finite-array full-wave or measured hardware validation is claimed. Recordings stay outside the public repository.
+
+**Defensible CV wording:** Developed and tested a reproducible MATLAB study of nonideal binary RIS states; performed CST 2023 periodic unit-cell load diagnostics, complex S-parameter export and mesh-refinement investigations with traceable assumptions and numerical evidence.
+
+## Additional diagnostics, 23 October 2026
+
+I completed **16 new CST simulations, D003-D018**, preserving each checkpoint,
+configuration, native complex exports and solver log. Preparation failures D000-D002
+are excluded from that count.
+
+![Coarse broadband comparison](results/cst_diagnostics/coarse_broadband_comparison.png)
+
+**Broadband diagnostic, D015/D016.** Solid curves show actual CST output; dashed
+curves show approximate paper digitization. Both Floquet modes use consistent
+magnitude and unwrapped phase axes. Direct frequencies are 24, 25, 26, 26.168, 27,
+28, 29 and 30 GHz. The 1,006 exported points include interpolation. Copying the
+strict project with results did **not** retain its refined mesh in the new solve:
+the logs report 2,910 tetrahedra. These curves therefore do not establish broadband
+convergence or resolved resonances. The strict operating-point evidence above
+remains a separate dataset.
+
+**Ground-removal test, D017/D018.** I removed the copper backplane, changed the
+bottom boundary to expanded open and added a bottom Floquet port. This is a
+counterfactual backing test, not an established reconstruction of the paper.
+Mode 1 changes by about 0.00049 degrees between states. Mode 2 changes by about
+88.70 degrees, but its reflection magnitudes are only 0.1153 ON and 0.3882 OFF,
+with transmitted fractions 0.8895 and 0.8486. The backing affects the response
+substantially; removing it does not recover the paper benchmark. Initial meshes
+make this a diagnostic observation, not a converged physical conclusion.
+
+For these two-sided cells I sum both reflected and both transmitted modes.
+The native curve labeled `Power Outgoing all Ports` omits bottom-port power in
+these exports; its raw values and residuals remain in the evidence table.
+The independently summed modal balance, including reported material and lumped
+losses, has maximum relative residual below 7.3e-7 across all completed runs.
+Transmission is never counted as absorption.
+
+See [ground-test numbers](results/cst_diagnostics/ungrounded_comparison.csv),
+[verification and next gates](docs/VERIFICATION_STATUS.md),
+[assumption ledger](docs/ASSUMPTIONS.md) and [exact change index](docs/FILE_INDEX.md).

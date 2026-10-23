@@ -1,0 +1,418 @@
+{
+  "1D Results\\Balance (All Ports)\\Balance [Zmax(1)]": [
+    [
+      26.168,
+      0.9927848361666453
+    ]
+  ],
+  "1D Results\\Balance (All Ports)\\Balance [Zmax(2)]": [
+    [
+      26.168,
+      0.9998275452573754
+    ]
+  ],
+  "1D Results\\Convergence\\Equation System Solver\\Number of Iterations\\[Zmax(1)]": [
+    [
+      26.168,
+      152.0
+    ]
+  ],
+  "1D Results\\Convergence\\Equation System Solver\\Number of Iterations\\[Zmax(2)]": [
+    [
+      26.168,
+      127.0
+    ]
+  ],
+  "1D Results\\Convergence\\Equation System Solver\\Relative Residual\\[Zmax(1)]": [
+    [
+      26.168,
+      -4.003013040832604
+    ]
+  ],
+  "1D Results\\Convergence\\Equation System Solver\\Relative Residual\\[Zmax(2)]": [
+    [
+      26.168,
+      -4.027607748266372
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Currents\\PIN_ON_series_RL [Zmax(1)]": [
+    [
+      26.168,
+      {
+        "real": -0.0009970504683784016,
+        "imag": 0.0010107938817430747
+      }
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Currents\\PIN_ON_series_RL [Zmax(2)]": [
+    [
+      26.168,
+      {
+        "real": 0.017179091209039,
+        "imag": 0.08342765950256481
+      }
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Impedances\\PIN_ON_series_RL [Zmax(1)]": [
+    [
+      26.168,
+      {
+        "real": 0.001,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Impedances\\PIN_ON_series_RL [Zmax(2)]": [
+    [
+      26.168,
+      {
+        "real": 0.001,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Voltages\\PIN_ON_series_RL [Zmax(1)]": [
+    [
+      26.168,
+      {
+        "real": -9.970504683784016e-07,
+        "imag": 1.0107938817430748e-06
+      }
+    ]
+  ],
+  "1D Results\\Lumped Elements\\Voltages\\PIN_ON_series_RL [Zmax(2)]": [
+    [
+      26.168,
+      {
+        "real": 1.7179091209039e-05,
+        "imag": 8.342765950256481e-05
+      }
+    ]
+  ],
+  "1D Results\\Materials\\RT_duroid_5880\\Dispersive\\Eps' (FD - Interpolated)": [
+    [
+      26.168,
+      2.2
+    ]
+  ],
+  "1D Results\\Materials\\RT_duroid_5880\\Dispersive\\Eps'' (FD - Interpolated)": [
+    [
+      26.168,
+      0.00198
+    ]
+  ],
+  "1D Results\\Port Information\\Distance (-40 dB)\\Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Distance (-40 dB)\\Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Effective Dielectric Constant\\Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": 1.0,
+        "imag": -0.0
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Effective Dielectric Constant\\Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": 1.0,
+        "imag": -0.0
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Gamma\\Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 548.4407253443161
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Gamma\\Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 548.4407253443161
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Wave Impedance\\Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": 376.73031346177066,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Port Information\\Wave Impedance\\Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": 376.7303134617706,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss in Dielectrics": [
+    [
+      26.168,
+      {
+        "real": 0.007189132823790643,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss in Lumped Elements": [
+    [
+      26.168,
+      {
+        "real": 1.0079069539314116e-09,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss in Metals": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss per Lumped Element\\Loss in element PIN_ON_series_RL": [
+    [
+      26.168,
+      {
+        "real": 1.0079069539314116e-09,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss per Material\\Volume loss in Copper_5p8e7S_per_m": [
+    [
+      26.168,
+      {
+        "real": 0.0005165206554976917,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Loss per Material\\Volume loss in RT_duroid_5880": [
+    [
+      26.168,
+      {
+        "real": 0.006672612168292951,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Power Accepted": [
+    [
+      26.168,
+      {
+        "real": 0.007189134538783727,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Power Accepted per Port\\Port Zmax": [
+    [
+      26.168,
+      {
+        "real": 0.007189134538783727,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Power Outgoing all Ports": [
+    [
+      26.168,
+      {
+        "real": 0.4928108654612163,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(1)]\\Power Stimulated": [
+    [
+      26.168,
+      {
+        "real": 0.5,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss in Dielectrics": [
+    [
+      26.168,
+      {
+        "real": 0.00016881824088427655,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss in Lumped Elements": [
+    [
+      26.168,
+      {
+        "real": 3.6276477724221865e-06,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss in Metals": [
+    [
+      26.168,
+      {
+        "real": 0.0,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss per Lumped Element\\Loss in element PIN_ON_series_RL": [
+    [
+      26.168,
+      {
+        "real": 3.6276477724221865e-06,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss per Material\\Volume loss in Copper_5p8e7S_per_m": [
+    [
+      26.168,
+      {
+        "real": 3.594795665611193e-05,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Loss per Material\\Volume loss in RT_duroid_5880": [
+    [
+      26.168,
+      {
+        "real": 0.00013287028422816462,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Power Accepted": [
+    [
+      26.168,
+      {
+        "real": 0.00017243987230544576,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Power Accepted per Port\\Port Zmax": [
+    [
+      26.168,
+      {
+        "real": 0.00017243987230544576,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Power Outgoing all Ports": [
+    [
+      26.168,
+      {
+        "real": 0.4998275601276946,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Power\\Excitation [Zmax(2)]\\Power Stimulated": [
+    [
+      26.168,
+      {
+        "real": 0.5,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Reference Impedance\\ZRef Zmax(1)": [
+    [
+      26.168000000000003,
+      {
+        "real": 376.73031346177066,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\Reference Impedance\\ZRef Zmax(2)": [
+    [
+      26.168000000000003,
+      {
+        "real": 376.7303134617706,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\S-Parameters\\SZmax(1),Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": 0.15784192714857384,
+        "imag": 0.9801543034129034
+      },
+      {
+        "real": 376.73031346177066,
+        "imag": 0.0
+      }
+    ]
+  ],
+  "1D Results\\S-Parameters\\SZmax(1),Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": -0.0011063166279111044,
+        "imag": 0.0019937215131088314
+      }
+    ]
+  ],
+  "1D Results\\S-Parameters\\SZmax(2),Zmax(1)": [
+    [
+      26.168,
+      {
+        "real": -0.0011061496574668029,
+        "imag": 0.0019937127572109345
+      }
+    ]
+  ],
+  "1D Results\\S-Parameters\\SZmax(2),Zmax(2)": [
+    [
+      26.168,
+      {
+        "real": 0.9180521820904807,
+        "imag": -0.3960178182258255
+      },
+      {
+        "real": 376.7303134617706,
+        "imag": 0.0
+      }
+    ]
+  ]
+}

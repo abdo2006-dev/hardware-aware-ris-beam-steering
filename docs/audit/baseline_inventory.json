@@ -1,0 +1,295 @@
+{
+  "baseline_commit": "4d61322a2864f6540cac1c53baa1eb6080cee4db",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 62,
+      "sha256": "235ec38572247f837e9391a5171bb137ab6e2166a7d5dc0f620b0a8e166bafde",
+      "text_lines": 8
+    },
+    {
+      "path": "README.md",
+      "bytes": 15122,
+      "sha256": "9660e76e691f8a3e4132e18fe0ec049f0235e0e0ad21b6d2394eab0043b8f59c",
+      "text_lines": 142
+    },
+    {
+      "path": "cst/baseline_on_proxy.cst",
+      "bytes": 41855,
+      "sha256": "02e49e108a66bfc0fce97410ab3592022d307af607f73017c25fa181b60d2411",
+      "signature": "4445030414000600"
+    },
+    {
+      "path": "cst/off_assumed_25fF.cst",
+      "bytes": 46408,
+      "sha256": "b49b16ad2449eb02fbf4228022ce511180c6825606ef1bdd5815460914868851",
+      "signature": "4445030414000600"
+    },
+    {
+      "path": "cst/off_assumed_25fF_meshcheck.cst",
+      "bytes": 46412,
+      "sha256": "f2702da89b034678fc63612176d3730e624ceab165472c78dd202c465e67095c",
+      "signature": "4445030414000600"
+    },
+    {
+      "path": "docs/data-dictionary.md",
+      "bytes": 1254,
+      "sha256": "93dc6cb247217a660b83ed5e17ae68683392bda65af949ef9203866437b7345b",
+      "text_lines": 16
+    },
+    {
+      "path": "docs/model-and-methods.md",
+      "bytes": 3302,
+      "sha256": "65066489c8260593026f46fbccb48fc0f201ff9d318ae49333e133813f3f0e90",
+      "text_lines": 55
+    },
+    {
+      "path": "docs/references.md",
+      "bytes": 1574,
+      "sha256": "7f0548290ae13651aaf916e0828c0c5058c26716a1b44edbc5c2913ea8950efb",
+      "text_lines": 10
+    },
+    {
+      "path": "figures/array_factor_2d.png",
+      "bytes": 165506,
+      "sha256": "6ddda62e11081eb2592a9787f4ea18143b1ebb2fff7ad7b3da169bc595e1459b",
+      "signature": "89504e470d0a1a0a"
+    },
+    {
+      "path": "figures/array_factor_azimuth_cut.png",
+      "bytes": 248678,
+      "sha256": "dad9e2f47fe036ce93709f7cf5ee59d0b7be5844eec37a06428a9ea79f9f1c5a",
+      "signature": "89504e470d0a1a0a"
+    },
+    {
+      "path": "figures/cst_model_perspective.jpg",
+      "bytes": 242267,
+      "sha256": "b5fbc489866c9e2c4b3904947b9fe3268b503ec636cd67a5befe76c6c91de122",
+      "signature": "ffd8ffe000104a46"
+    },
+    {
+      "path": "figures/cst_unit_cell_views.svg",
+      "bytes": 7167,
+      "sha256": "bc8887ea22ba65113007e1160c086f56f1cb9dd04e7b0978c0ec3118dee1a42a",
+      "text_lines": 82
+    },
+    {
+      "path": "figures/normalized_array_factor_cut.svg",
+      "bytes": 7455,
+      "sha256": "2403f086a9f4c6eff385e256c36d4885b0a6e124147842bff47af2391bcb2d29",
+      "text_lines": 40
+    },
+    {
+      "path": "matlab/ris_array_model.m",
+      "bytes": 6430,
+      "sha256": "1be6929cfe50903837c3bea28d345c19a4bca5be038f303d8c4e3f83f5658885",
+      "text_lines": 130
+    },
+    {
+      "path": "results/array_factor_metrics.csv",
+      "bytes": 211,
+      "sha256": "bf52c320b0ea46f60aae887b0d3e501a1cb1516445d69116450b9806f7d89a65",
+      "rows": 3,
+      "columns": [
+        "model",
+        "pointingError_deg",
+        "peakGain_dB_vs_ideal",
+        "maxSidelobe_dB"
+      ]
+    },
+    {
+      "path": "results/cst_baseline_complex_sparameters.csv",
+      "bytes": 262623,
+      "sha256": "f8732fd9b5732eda865bc65a5a788ed232ebc53c23085d830588e6942ba2e9a0",
+      "rows": 1001,
+      "columns": [
+        "frequency_GHz",
+        "S11_real",
+        "S11_imag",
+        "S11_magnitude",
+        "S11_dB",
+        "S11_phase_wrapped_deg",
+        "S21_real",
+        "S21_imag",
+        "S12_real",
+        "S12_imag",
+        "S22_real",
+        "S22_imag",
+        "Zref_mode1_real_ohm",
+        "Zref_mode1_imag_ohm"
+      ]
+    },
+    {
+      "path": "results/cst_off_assumed_25fF_complex_sparameters.csv",
+      "bytes": 279830,
+      "sha256": "b273b12067f1a7d7c887db267ccdc6f0e4caef6d01b03be96beb7639dd6bfa19",
+      "rows": 1001,
+      "columns": [
+        "frequency_GHz",
+        "S11_real",
+        "S11_imag",
+        "S11_magnitude",
+        "S11_dB",
+        "S11_phase_wrapped_deg",
+        "S21_real",
+        "S21_imag",
+        "S12_real",
+        "S12_imag",
+        "S22_real",
+        "S22_imag",
+        "mode1_reflected_power_fraction",
+        "mode2_reflected_power_fraction"
+      ]
+    },
+    {
+      "path": "results/cst_on_off_comparison.csv",
+      "bytes": 194872,
+      "sha256": "42ba4e9370eb596fdc5bcfcbce6a14e7a80a4c7989c4610618a8bbfbbe041356",
+      "rows": 1001,
+      "columns": [
+        "frequency_GHz",
+        "ON_S11_real",
+        "ON_S11_imag",
+        "ON_S11_dB",
+        "OFF_S11_real",
+        "OFF_S11_imag",
+        "OFF_S11_dB",
+        "ON_reflected_two_mode",
+        "OFF_reflected_two_mode",
+        "delta_S11_dB_OFF_minus_ON"
+      ]
+    },
+    {
+      "path": "results/frequency_sensitivity.csv",
+      "bytes": 984,
+      "sha256": "823b9ffc06ff7151ccebd178e7f7ef5e91c1eb744535d112cdb0977c9175c4b0",
+      "rows": 5,
+      "columns": [
+        "offset_GHz",
+        "assumed_phase_slope_deg_per_GHz_state0",
+        "assumed_phase_slope_deg_per_GHz_state1",
+        "assumed_magnitude_slope_per_GHz_state0",
+        "assumed_magnitude_slope_per_GHz_state1",
+        "target_theta_deg",
+        "target_phi_deg",
+        "peak_theta_deg",
+        "peak_phi_deg",
+        "pointing_error_deg",
+        "peak_gain_dB_relative_to_ideal_N2",
+        "max_sidelobe_dB_relative_to_global_outside_15deg",
+        "direction_grid_step_deg",
+        "main_lobe_exclusion_deg",
+        "grid_sample_sum_fraction_outside_15deg"
+      ]
+    },
+    {
+      "path": "results/phase_separation_sensitivity.csv",
+      "bytes": 1132,
+      "sha256": "aa8ddfea8faf8dd88cf1eaac0f7ff037085c79538254f564c65fa9a9917799fc",
+      "rows": 9,
+      "columns": [
+        "phase_separation_deg",
+        "target_theta_deg",
+        "target_phi_deg",
+        "peak_theta_deg",
+        "peak_phi_deg",
+        "pointing_error_deg",
+        "peak_gain_dB_relative_to_ideal_N2",
+        "max_sidelobe_dB_relative_to_global_outside_15deg",
+        "direction_grid_step_deg",
+        "main_lobe_exclusion_deg",
+        "grid_sample_sum_fraction_outside_15deg"
+      ]
+    },
+    {
+      "path": "results/target_angle_sweep.csv",
+      "bytes": 2180,
+      "sha256": "20779fac401da74676f772da7c2658ef9c53324bd4cf1b958c756c52aab0c1b5",
+      "rows": 18,
+      "columns": [
+        "model",
+        "target_theta_deg",
+        "target_phi_deg",
+        "peak_theta_deg",
+        "peak_phi_deg",
+        "pointing_error_deg",
+        "peak_gain_dB_relative_to_ideal_N2",
+        "max_sidelobe_dB_relative_to_global_outside_15deg",
+        "direction_grid_step_deg",
+        "main_lobe_exclusion_deg",
+        "grid_sample_sum_fraction_outside_15deg"
+      ]
+    },
+    {
+      "path": "results/uncertainty_sensitivity.csv",
+      "bytes": 6373,
+      "sha256": "685378a8a68a4b519c6f32430b9efff40a828d41db969ecc73721f516d05d8e6",
+      "rows": 48,
+      "columns": [
+        "phase_sigma_deg",
+        "amplitude_sigma_fraction",
+        "metric",
+        "mean",
+        "std",
+        "p05",
+        "p95",
+        "trials",
+        "seed"
+      ]
+    }
+  ],
+  "historical_zero_perturbation": [
+    {
+      "phase_sigma_deg": "0",
+      "amplitude_sigma_fraction": "0",
+      "metric": "pointing_error_deg",
+      "mean": "1.0887007056189941",
+      "std": "0.0",
+      "p05": "1.0887007056189941",
+      "p95": "1.0887007056189941",
+      "trials": "40",
+      "seed": "20261021"
+    },
+    {
+      "phase_sigma_deg": "0",
+      "amplitude_sigma_fraction": "0",
+      "metric": "peak_gain_dB_relative_to_ideal_N2",
+      "mean": "-5.786564201713774",
+      "std": "0.0",
+      "p05": "-5.786564201713774",
+      "p95": "-5.786564201713774",
+      "trials": "40",
+      "seed": "20261021"
+    },
+    {
+      "phase_sigma_deg": "0",
+      "amplitude_sigma_fraction": "0",
+      "metric": "max_sidelobe_dB_relative_to_global_outside_15deg",
+      "mean": "-10.314333482831454",
+      "std": "0.0",
+      "p05": "-10.314333482831454",
+      "p95": "-10.314333482831454",
+      "trials": "40",
+      "seed": "20261021"
+    },
+    {
+      "phase_sigma_deg": "0",
+      "amplitude_sigma_fraction": "0",
+      "metric": "grid_sample_sum_fraction_outside_15deg",
+      "mean": "0.3518427714488201",
+      "std": "0.0",
+      "p05": "0.3518427714488201",
+      "p95": "0.3518427714488201",
+      "trials": "40",
+      "seed": "20261021"
+    }
+  ],
+  "historical_cst_near_reference": {
+    "frequency_GHz": 26.166,
+    "on_abs": 0.9915718839476231,
+    "off_abs": 0.991299709402804,
+    "on_phase_deg": 87.61130975692879,
+    "off_phase_deg": 90.48510564299683,
+    "shortest_phase_separation_deg": 2.8737958860680473
+  }
+}

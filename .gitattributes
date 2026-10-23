@@ -1,0 +1,3 @@
+# Preserve exact scientific input/output bytes so manifest SHA-256 values remain
+# valid after cloning on another platform. Do not apply newline conversion.
+* -text

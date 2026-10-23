@@ -1,0 +1,61 @@
+{
+  "generator": "matlab/run_impedance_example.m",
+  "source_equations": "Goshu et al., Eq.7 and matched-load Eq.11; y0=1, ZRT=0",
+  "validation_status": "PASS algebraic identities; PROVISIONAL illustrative scenario",
+  "assumptions": "Four-port reciprocal circuit; 50+j20 ohm self impedance; adjacent 5+j12 ohm mutual impedance; all loads share reactance. TX/RX coupling vectors are arbitrary. No physical antenna geometry is assigned.",
+  "real_part_min_eigenvalue": 41.909830056250527,
+  "Z_real": [
+    [
+      50,
+      5,
+      0,
+      0
+    ],
+    [
+      5,
+      50,
+      5,
+      0
+    ],
+    [
+      0,
+      5,
+      50,
+      5
+    ],
+    [
+      0,
+      0,
+      5,
+      50
+    ]
+  ],
+  "Z_imag": [
+    [
+      20,
+      12,
+      0,
+      0
+    ],
+    [
+      12,
+      20,
+      12,
+      0
+    ],
+    [
+      0,
+      12,
+      20,
+      12
+    ],
+    [
+      0,
+      0,
+      12,
+      20
+    ]
+  ],
+  "note": "The matched-load term can remain nonzero at load Gamma=0. It is a circuit illustration of Eq.11, not a measured structural-scattering level. Controlled and matched powers do not add without their interference term.",
+  "code_sha256": "00c1bcdd0b0faf029d35952cd47c4b3b01d6c908e80f9b585aeb4d0263577fd2"
+}

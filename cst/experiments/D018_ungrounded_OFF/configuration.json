@@ -1,0 +1,23 @@
+{
+  "experiment": "D018_ungrounded_OFF",
+  "pid": 27204,
+  "topology": "original",
+  "R": 0.0,
+  "L": 3e-11,
+  "C": 2.5e-14,
+  "prepare_only": false,
+  "mesh_steps": null,
+  "frequency": 26.168,
+  "adaptive": false,
+  "source": "cst/off_assumed_25fF.cst",
+  "strict_adaptive": false,
+  "polarization_angle": null,
+  "ungrounded": true,
+  "frequency_GHz": 26.168,
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "mesh": "Source checkpoint tetrahedral mesh; adaptation disabled for initial controlled diagnostic",
+  "source_sha256": "b49b16ad2449eb02fbf4228022ce511180c6825606ef1bdd5815460914868851",
+  "backing": "Counterfactual ground removal: no copper backplane, open bottom Floquet port with 2.5 mm air; not established as the published geometry",
+  "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block",
+  "checkpoint_sha256": "79f79fa1648cd52e6ba4b2a71b801299e3fcd0852b19df2a9ea70d3e6d5c86bc"
+}

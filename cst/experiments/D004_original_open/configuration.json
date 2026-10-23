@@ -1,0 +1,15 @@
+{
+  "experiment": "D004_original_open",
+  "pid": 27204,
+  "topology": "original",
+  "R": 1000000000.0,
+  "L": 0,
+  "C": 0,
+  "prepare_only": false,
+  "frequency_GHz": 26.168,
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "source": "cst/off_assumed_25fF.cst",
+  "mesh": "Legacy initial tetrahedral mesh; adaptation disabled for controlled diagnostic",
+  "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block",
+  "checkpoint_sha256": "672c857aaab0af8a74e20de446aef4f6eb84bd76e0c792ffefdf182c090e13c7"
+}

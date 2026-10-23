@@ -1,0 +1,18 @@
+{
+  "experiment": "D008_original_OFF_refine8",
+  "pid": 27204,
+  "topology": "original",
+  "R": 0.0,
+  "L": 3e-11,
+  "C": 2.5e-14,
+  "prepare_only": false,
+  "mesh_steps": 8.0,
+  "frequency": 26.168,
+  "adaptive": true,
+  "frequency_GHz": 26.168,
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "source": "cst/off_assumed_25fF.cst",
+  "mesh": "Manual global refinement: wavelength and diagonal divisions 8.0; adaptive tetrahedral refinement enabled",
+  "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block",
+  "checkpoint_sha256": "10b4d980ad726d1f06a0b92e18bbd274c319072cb572a52f57ee753f060ef4e1"
+}

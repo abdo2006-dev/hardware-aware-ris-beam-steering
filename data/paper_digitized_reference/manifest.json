@@ -1,0 +1,45 @@
+{
+  "dataset": "paper_digitized_reference",
+  "validation_status": "PROVISIONAL",
+  "source": "Goshu et al., Realistic Evaluation of Impedance-Based RIS Modeling, EuCAP 2025, Fig.2, supplied 5-page PDF",
+  "source_pdf_sha256": "cf56b68b5b8c53bf1326468396d71ecbc61c33a50a933b98e18998a83366569a",
+  "rendered_page_sha256": "00e0c0387cc95feaa6db1dd259236ae205f2378cf3512b87fe85cc6ba19175aa",
+  "generator": "tools/digitize_figure2.py",
+  "page": 3,
+  "render_size_pixels": [
+    1191,
+    1684
+  ],
+  "calibration": {
+    "magnitude": {
+      "x0": 690,
+      "x1": 1073,
+      "y0": 110,
+      "y1": 321,
+      "v0": 1,
+      "v1": 0.65
+    },
+    "phase": {
+      "x0": 697,
+      "x1": 1063,
+      "y0": 381,
+      "y1": 592,
+      "v0": 200,
+      "v1": -200
+    }
+  },
+  "curve_pixel_columns": {
+    "magnitude_red": 382,
+    "magnitude_blue": 381,
+    "phase_red": 365,
+    "phase_blue": 362
+  },
+  "method": "Threshold red/blue pixels, exclude legend and vertical wrap, median row per column, unwrap phase, linearly resample separate plotted magnitude and unwrapped phase; form complex coefficients. Subsequent frequency interpolation uses real/imaginary components.",
+  "estimated_reading_resolution": "About 0.02 GHz horizontally, 0.004 magnitude, 2 degrees phase; estimated raster resolution only, not a statistical confidence interval. Axis registration and original plotting introduce additional unknown error.",
+  "endpoints": "24.0 and 30.0 GHz omitted to avoid clipped curve/axis overlap",
+  "state_mapping": {
+    "0": "ON red",
+    "1": "OFF blue"
+  },
+  "supersedes": "Historical approximate single-point states 0.96@38deg and 0.74@-156deg; preserved in historical_approx_point"
+}

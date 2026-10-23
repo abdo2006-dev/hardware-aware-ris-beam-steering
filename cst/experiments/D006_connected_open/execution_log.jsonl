@@ -1,0 +1,5 @@
+{"utc": "2026-10-22T18:23:26.933428Z", "stage": "native_interface_connected", "detail": "[27204]"}
+{"utc": "2026-10-22T18:23:34.153585Z", "stage": "isolated_checkpoint_saved", "detail": "cst\\experiments\\D006_connected_open\\D006_connected_open.cst"}
+{"utc": "2026-10-22T18:23:35.509571Z", "stage": "configuration_applied", "detail": {"experiment": "D006_connected_open", "pid": 27204, "topology": "connected", "R": 1000000000.0, "L": 0, "C": 0, "prepare_only": false, "frequency_GHz": 26.168, "status": "PREPARED", "source": "cst/off_assumed_25fF.cst", "mesh": "Legacy initial tetrahedral mesh; adaptation disabled for controlled diagnostic", "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block"}}
+{"utc": "2026-10-22T18:23:35.527882Z", "stage": "solver_started", "detail": "Single solved frequency; both legacy Floquet modes"}
+{"utc": "2026-10-22T18:23:52.049524Z", "stage": "solver_returned", "detail": "No API exception; inspect results before accepting"}

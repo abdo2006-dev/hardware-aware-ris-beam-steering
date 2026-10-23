@@ -1,130 +1,133 @@
-function results = ris_array_model(cstFile)
-%RIS_ARRAY_MODEL Analytical 20x20 RIS array-factor comparison.
-% This script models an independent-element array factor. It does not model
-% mutual coupling, structural scattering or full-wave RCS.
-% Usage: results = ris_array_model();
-% Optional CST CSV columns: frequency_GHz,state,real,imag, with state 0 or 1.
-% CST rows at 26.168 GHz are interpolated; absent file uses clearly labeled
-% approximate manual digitization of Fig. 2 in the supplied paper.
-
-if nargin < 1, cstFile = ''; end
-rng(20261021,'twister');
-outDir = fullfile(fileparts(mfilename('fullpath')),'..','results');
-if ~isfolder(outDir), mkdir(outDir); end
-c0 = 299792458; f0 = 26.168e9; lambda0 = c0/f0; pitch = 5.35e-3;
-N = 20; target = [25 15]; incident = [0 0];
-axisPos = ((0:N-1)-(N-1)/2)*pitch;
-[X,Y] = meshgrid(axisPos,axisPos); xy = [X(:),Y(:)];
-Ghw = [0.96*exp(1i*deg2rad(38)), 0.74*exp(1i*deg2rad(-156))];
-provenance = "Approximate manual Fig. 2 digitization; not CST calibrated";
-if strlength(cstFile)>0 && isfile(cstFile)
-    T=readtable(cstFile);
-    req=["frequency_GHz","state","real","imag"];
-    assert(all(ismember(req,string(T.Properties.VariableNames))), 'CST CSV needs frequency_GHz,state,real,imag columns.');
-    for s=0:1
-        rows=T(T.state==s,:); assert(height(rows)>=2,'Need >=2 CST samples for each state.');
-        Ghw(s+1)=interp1(rows.frequency_GHz*1e9,rows.real+1i*rows.imag,f0,'linear','extrap');
-    end
-    provenance="Complex CST export interpolated at 26.168 GHz";
+function results=ris_array_model(cstFile,outDir,doSweeps)
+%RIS_ARRAY_MODEL Repaired analytical 20x20 model retaining the original phase formula.
+% Use run_research() to run the correctness gate and regenerate both datasets.
+root=fileparts(fileparts(mfilename('fullpath')));a=ris_core();c=a.config();
+if nargin<1||strlength(cstFile)==0,cstFile=fullfile(root,'data','paper_digitized_reference','reflection_states.csv');end
+if nargin<2,outDir=fullfile(root,'results','validated_v1','paper_digitized_reference');end
+if nargin<3,doSweeps=true;end
+if ~isfolder(outDir),mkdir(outDir);end
+input=readtable(cstFile,'TextType','string');
+if ismember('validation_status',input.Properties.VariableNames),status=char(input.validation_status(1));else,status='PROVISIONAL';end
+if contains(cstFile,'paper_digitized_reference'),dataset='paper_digitized_reference';else,dataset='cst_simulated_hardware';end
+S=a.load_states(cstFile,c.frequency_Hz/1e9);ph=a.desired_phase(c);op=a.operator(c);
+names={'ideal_continuous','ideal_binary_fixed_reference','hardware_fixed_reference','ideal_binary_optimized_reference','hardware_optimized_reference'};
+methods={'continuous','nearest_phase','nearest_phase','optimized_reference','optimized_reference'};
+stateSets={1,[1 -1],S,[1 -1],S};G=zeros(c.N^2,5);alpha=zeros(1,5);
+for j=1:5,[G(:,j),~,alpha(j)]=a.weights(ph,stateSets{j},methods{j},c.reference_grid_deg);a.check(G(:,j),400);end
+P=zeros(size(op.E,1),5);for j=1:5,P(:,j)=abs(op.E*G(:,j)).^2;end
+results=table();
+for j=1:5
+ m=a.metrics(G(:,j),c,op,P(:,j));cut=a.cut(G(:,j),c);
+ m.principal_cut_secondary_lobe_dB_vs_target_lobe=cut.max_secondary_cut_lobe_dB_vs_target_lobe;
+ m.cut_first_minimum_left_deg=cut.first_minimum_left_deg;m.cut_first_minimum_right_deg=cut.first_minimum_right_deg;
+ m.common_reference_deg=alpha(j);m.dataset=string(dataset);m.validation_status=string(status);m.model=string(names{j});
+ results=[results;struct2table(m)]; %#ok<AGROW>
 end
-k=2*pi*f0/c0; si=uv(incident(1),incident(2)); st=uv(target(1),target(2));
-phiTarget=-k*(xy*(st-si).');
-gammaContinuous=exp(1i*phiTarget);
-gammaIdeal=exp(1i*pi*(cos(phiTarget)<0));
-phaseDistance=abs(angle(exp(1i*(phiTarget(:)-angle(Ghw)))));
-[~,stateIdx]=min(phaseDistance,[],2); gammaHardware=Ghw(stateIdx).';
-
-theta=0:1:60; az=-60:1:60;
-[P0,d0]=af(gammaContinuous,xy,theta,az,k,si,N,target);
-[P1,d1]=af(gammaIdeal,xy,theta,az,k,si,N,target);
-[P2,d2]=af(gammaHardware,xy,theta,az,k,si,N,target);
-figure('Name','RIS normalized array-factor cut'); hold on; grid on;
-it=find(theta==target(1),1);
-plot(az,10*log10(max(P0(it,:)/max(P0(:)),1e-8)),'LineWidth',1.5);
-plot(az,10*log10(max(P1(it,:)/max(P1(:)),1e-8)),'LineWidth',1.5);
-plot(az,10*log10(max(P2(it,:)/max(P2(:)),1e-8)),'LineWidth',1.5);
-xlabel('Azimuth phi (deg)'); ylabel('Normalized power (dB)');
-legend('Ideal continuous','Ideal 1-bit','Hardware-aware 1-bit','Location','best');
-title('Array-factor cut at theta = 25 deg'); ylim([-40 0]);
-print(gcf,fullfile(outDir,'matlab_array_factor_cut.png'),'-dpng','-r300');
-
-results=table(["Ideal continuous";"Ideal 1-bit";"Hardware-aware 1-bit"], ...
-    [d0.pointError;d1.pointError;d2.pointError], ...
-    [d0.gainDb;d1.gainDb;d2.gainDb], ...
-    [d0.sideDb;d1.sideDb;d2.sideDb], ...
-    'VariableNames',{'model','pointingError_deg','peakGain_dB_vs_ideal','maxSidelobe_dB'});
-disp(results); fprintf('Hardware-state source: %s\n',provenance);
-writetable(results,fullfile(outDir,'matlab_metrics.csv'));
-fprintf('f0 %.3f GHz, pitch/lambda %.4f, array %dx%d\n',f0/1e9,pitch/lambda0,N,N);
-
-% Controlled target-angle sweep. All results remain independent-element array factors.
-targetGrid=[0 0;15 0;25 15;35 30;45 0;45 30];
-targetRows=table();
-for a=1:size(targetGrid,1)
-    tar=targetGrid(a,:); st=uv(tar(1),tar(2)); ph=-k*(xy*(st-si).');
-    gc=exp(1i*ph); gi=exp(1i*pi*(cos(ph)<0));
-    pd=abs(angle(exp(1i*(ph(:)-angle(Ghw)))));
-    [~,ix]=min(pd,[],2); gh=Ghw(ix).';
-    [~,dc]=af(gc,xy,theta,az,k,si,N,tar);
-    [~,di]=af(gi,xy,theta,az,k,si,N,tar);
-    [~,dh]=af(gh,xy,theta,az,k,si,N,tar);
-    targetRows=[targetRows; table(tar(1),tar(2),dc.pointError,di.pointError,dh.pointError, ...
-        dc.gainDb,di.gainDb,dh.gainDb,'VariableNames', ...
-        {'targetTheta_deg','targetPhi_deg','continuousError_deg','ideal1bitError_deg', ...
-        'hardware1bitError_deg','continuousGain_dB','ideal1bitGain_dB','hardware1bitGain_dB'})]; %#ok<AGROW>
+writetable(results,fullfile(outDir,'array_factor_metrics.csv'));
+wide=table(op.theta,op.phi,'VariableNames',{'polar_theta_deg','azimuth_phi_deg'});
+for j=1:5,wide.(names{j})=P(:,j)/c.N^4;end
+writetable(wide,fullfile(outDir,'array_factor_grid.csv'));
+cutRows=table();
+for j=1:5
+ cut=a.cut(G(:,j),c);r=table(cut.psi_deg,cut.power/c.N^4,repmat(string(names{j}),numel(cut.psi_deg),1), ...
+ 'VariableNames',{'signed_polar_cut_deg','power_vs_ideal_N2','model'});cutRows=[cutRows;r]; %#ok<AGROW>
 end
-writetable(targetRows,fullfile(outDir,'target_angle_sweep_matlab.csv'));
-
-% Two-dimensional direction maps, normalized separately to each model's peak.
-fig2=figure('Name','RIS two-dimensional array-factor maps','Color','w');
-patterns={P0,P1,P2}; labels={'Ideal continuous','Ideal 1-bit','Hardware-aware 1-bit'};
-for q=1:3
-    subplot(1,3,q);
-    imagesc(az,theta,10*log10(max(patterns{q}/max(patterns{q}(:)),1e-4)));
-    axis xy; caxis([-40 0]); colorbar; xlabel('Azimuth phi (deg)');
-    if q==1, ylabel('Elevation theta (deg)'); end
-    title(labels{q});
-end
-print(fig2,fullfile(outDir,'matlab_array_factor_2d.png'),'-dpng','-r300');
-
-% Controlled uncertainty sweep; array-factor estimates only.
-phaseSigma=[0 5 10 20]; ampSigma=[0 0.05 0.10]; trials=40;
-rows=[];
-for sp=phaseSigma
-  for sa=ampSigma
-    err=zeros(trials,1); gain=zeros(trials,1);
-    for r=1:trials
-      gr=gammaHardware.*max(0,1+sa*randn(N*N,1)).*exp(1i*deg2rad(sp)*randn(N*N,1));
-      [pr,dr]=af(gr,xy,0:1:60,-60:1:60,k,si,N,target);
-      err(r)=dr.pointError; gain(r)=dr.gainDb;
-    end
-    rows=[rows; table(sp,sa,mean(err),std(err),mean(gain),std(gain),trials)]; %#ok<AGROW>
+writetable(cutRows,fullfile(outDir,'principal_cut.csv'));
+make_figures(outDir,dataset,status,c,op,P,names,results,cutRows);
+if doSweeps
+ rng(c.seed,'twister');unc=table();base=a.metrics(G(:,3),c,op);zeroMax=0;
+ fields={'target_gain_dB_vs_ideal_N2','refined_peak_gain_dB_vs_ideal_N2','pointing_error_deg','max_outside_target_cone_dB_vs_peak','hemisphere_pattern_integral_fraction_outside_cone'};
+ for sp=[0 5 10 20]
+  for sa=[0 .05 .10]
+   coeff=zeros(c.N^2,c.trials);
+   for t=1:c.trials,coeff(:,t)=a.perturb(G(:,3),sa,sp);a.check(coeff(:,t),400);end
+   if sp==0&&sa==0
+    % Use exactly the same deterministic vector evaluator for the identity case.
+    pow=repmat(abs(op.E*G(:,3)).^2,1,c.trials);
+   else,pow=abs(op.E*coeff).^2;end
+   v=zeros(c.trials,numel(fields));
+   for t=1:c.trials
+    mt=a.metrics(coeff(:,t),c,op,pow(:,t));
+    for k=1:numel(fields),v(t,k)=mt.(fields{k});end
+   end
+   for k=1:numel(fields)
+    if sa==0&&sp==0,delta=max(abs(v(:,k)-base.(fields{k})));zeroMax=max(zeroMax,delta);assert(delta<1e-7,'ris:ZeroNoise','Zero-perturbation result differs from deterministic baseline.');end
+    sd=std(v(:,k));se=sd/sqrt(c.trials);mu=mean(v(:,k));pct=prctile(v(:,k),[5 95]);
+    row=table(sp,sa,string(fields{k}),mu,sd,se,mu-1.96*se,mu+1.96*se,pct(1),pct(2),c.trials,c.seed, ...
+      'VariableNames',{'phase_sigma_deg','amplitude_sigma_fraction','metric','mean','std','standard_error_mean','normal_approx_mean_CI95_low','normal_approx_mean_CI95_high','empirical_p05','empirical_p95','trials','seed'});
+    unc=[unc;row]; %#ok<AGROW>
+   end
   end
+ end
+ writetable(unc,fullfile(outDir,'uncertainty_sensitivity.csv'));
+ sweep=table();targets=[0 0;15 0;25 15;35 30;45 0;45 30];
+ for t=1:size(targets,1)
+  ct=c;ct.target_deg=targets(t,:);pt=a.desired_phase(ct);
+  for j=1:5
+   gg=a.weights(pt,stateSets{j},methods{j},c.reference_grid_deg);m=a.metrics(gg,ct,op);
+   m.model=string(names{j});sweep=[sweep;struct2table(m)]; %#ok<AGROW>
+  end
+ end
+ writetable(sweep,fullfile(outDir,'target_angle_sweep.csv'));
+ sep=table();amp=table();
+ for s=140:10:220
+  ss=[.96*exp(1i*deg2rad(38)),.74*exp(1i*deg2rad(38+s))];
+  for method={'nearest_phase','optimized_reference'}
+   gg=a.weights(ph,ss,method{1},c.reference_grid_deg);m=a.metrics(gg,c,op);m.phase_separation_deg=s;m.assignment=string(method{1});sep=[sep;struct2table(m)]; %#ok<AGROW>
+  end
+ end
+ for mag=.5:.1:1
+  for method={'nearest_phase','optimized_reference'}
+   gg=a.weights(ph,[1 -mag],method{1},c.reference_grid_deg);m=a.metrics(gg,c,op);m.state1_magnitude=mag;m.assignment=string(method{1});amp=[amp;struct2table(m)]; %#ok<AGROW>
+  end
+ end
+ writetable(sep,fullfile(outDir,'phase_separation_sensitivity.csv'));writetable(amp,fullfile(outDir,'amplitude_imbalance_sensitivity.csv'));
+ fig=figure('Visible','off','Color','w','Position',[100 100 1150 430]);
+ subplot(1,2,1);hold on;grid on;
+ for method={'nearest_phase','optimized_reference'},r=sep(sep.assignment==method{1},:);plot(r.phase_separation_deg,r.target_gain_dB_vs_ideal_N2,'-o','DisplayName',method{1});end
+ xlabel('State phase separation (deg)');ylabel('Target power / ideal N^2 (dB)');legend('Interpreter','none','Location','best');
+ subplot(1,2,2);hold on;grid on;
+ for method={'nearest_phase','optimized_reference'},r=amp(amp.assignment==method{1},:);plot(r.state1_magnitude,r.target_gain_dB_vs_ideal_N2,'-o','DisplayName',method{1});end
+ xlabel('State 1 magnitude (state 0 = 1)');ylabel('Target power / ideal N^2 (dB)');
+ sgtitle(sprintf('Assumed state sweeps | %s | 26.168 GHz | 20x20',dataset),'Interpreter','none');
+ exportgraphics(fig,fullfile(outDir,'controlled_state_sweeps.png'),'Resolution',180);close(fig);
+ fprintf('Zero-noise maximum metric difference: %.16g\n',zeroMax);
+else,zeroMax=NaN;end
+manifest.dataset=dataset;manifest.validation_status=status;manifest.source_file=char(cstFile);
+manifest.source_sha256=ris_sha256(cstFile);manifest.generator='matlab/ris_array_model.m';
+manifest.config=c;manifest.state_magnitude=abs(S);manifest.state_phase_deg=rad2deg(angle(S));
+manifest.normalization='Every main pattern is |AF|^2 / 400^2, referenced to ideal continuous coherent power. No element pattern, coupling, radiation efficiency or RCS is modeled.';
+manifest.coordinate_system='Array plane XY; polar theta from +Z; azimuth phi about +Z from +X toward +Y. Canonical phi=0 at broadside.';
+manifest.peak_method='Full forward hemisphere sampled search; four separated candidate lobes and the target seed local tangential-direction fminsearch. Refined numerical maximum is not a rigorous global-optimum certificate.';
+manifest.outside_metric='Maximum sampled power outside a 15-degree spherical target cone; includes mirror beams and other competing main lobes. It is not automatically a conventional sidelobe level.';
+manifest.integral='Forward-hemisphere scalar array-factor pattern integral using sin(theta) dtheta dphi. This is not measured power or radiation efficiency.';
+manifest.uncertainty='Independent normal phase errors; multiplicative normal magnitude errors clipped to [0,1]. 40 trials/settings, fixed seed. Empirical percentiles and approximate normal mean confidence intervals; no claim of fabrication-calibrated distributions.';
+manifest.zero_noise_max_metric_difference=zeroMax;
+[~,head]=system('git rev-parse HEAD');manifest.parent_code_commit=strtrim(head);
+files=dir(fullfile(fileparts(mfilename('fullpath')),'*.m'));manifest.code=struct();
+for j=1:numel(files),manifest.code.(matlab.lang.makeValidName(files(j).name))=ris_sha256(fullfile(files(j).folder,files(j).name));end
+manifest.outputs=struct();f=dir(outDir);
+for j=1:numel(f),if ~f(j).isdir&&~strcmp(f(j).name,'manifest.json'),manifest.outputs.(matlab.lang.makeValidName(f(j).name))=ris_sha256(fullfile(outDir,f(j).name));end,end
+fid=fopen(fullfile(outDir,'manifest.json'),'w');fwrite(fid,jsonencode(manifest,PrettyPrint=true));fclose(fid);
+back=readtable(fullfile(outDir,'array_factor_metrics.csv'),'TextType','string');
+for j=1:width(results)
+ n=results.Properties.VariableNames{j};if isnumeric(results.(n)),assert(all(abs(back.(n)-results.(n))<1e-10|isnan(back.(n))&isnan(results.(n))),'ris:ExportMismatch','Metric CSV does not match computed values.');end
 end
-rows.Properties.VariableNames={'phaseSigma_deg','amplitudeSigma_fraction','meanPointError_deg','stdPointError_deg','meanGain_dB','stdGain_dB','trials'};
-writetable(rows,fullfile(outDir,'uncertainty_sensitivity_matlab.csv'));
-save(fullfile(outDir,'matlab_results.mat'),'results','targetRows','rows');
+disp(results(:,{'model','target_gain_dB_vs_ideal_N2','refined_peak_gain_dB_vs_ideal_N2','pointing_error_deg','max_outside_target_cone_dB_vs_peak'}));
 end
 
-function v=uv(t,p)
-t=deg2rad(t);p=deg2rad(p);v=[sin(t)*cos(p),sin(t)*sin(p)];
+function make_figures(out,dataset,status,c,op,P,names,summary,cutRows)
+colors=lines(5);fig=figure('Visible','off','Color','w','Position',[100 100 1200 550]);hold on;grid on;
+for j=1:5,r=cutRows(cutRows.model==names{j},:);plot(r.signed_polar_cut_deg,10*log10(max(r.power_vs_ideal_N2,1e-10)),'LineWidth',1.5,'Color',colors(j,:),'DisplayName',names{j});end
+xlabel('Signed polar cut angle (deg; negative side uses opposite azimuth)');ylabel('Array-factor power / ideal N^2 (dB)');ylim([-45 1]);xlim([-90 90]);legend('Interpreter','none','Location','southoutside','NumColumns',2);
+title(sprintf('%s (%s) | %.3f GHz | 20x20 | target polar 25, azimuth 15 deg',dataset,status,c.frequency_Hz/1e9),'Interpreter','none');
+exportgraphics(fig,fullfile(out,'principal_cut_ideal_reference.png'),'Resolution',180);close(fig);
+fig=figure('Visible','off','Color','w','Position',[100 100 1450 560]);
+for j=1:3,subplot(1,3,j);imagesc(c.azimuth_deg,c.polar_deg,reshape(10*log10(max(P(:,j)/c.N^4,1e-4)),op.shape));axis xy;caxis([-40 0]);colorbar;xlabel('Azimuth phi (deg)');ylabel('Polar theta from +Z (deg)');title(names{j},'Interpreter','none');end
+sgtitle(sprintf('%s (%s) | 26.168 GHz | common ideal N^2 reference',dataset,status),'Interpreter','none');
+exportgraphics(fig,fullfile(out,'hemisphere_common_reference.png'),'Resolution',180);close(fig);
+fig=figure('Visible','off','Color','w','Position',[100 100 1050 500]);bar([summary.target_gain_dB_vs_ideal_N2,summary.refined_peak_gain_dB_vs_ideal_N2]);grid on;
+xticks(1:5);xticklabels(names);xtickangle(15);set(gca,'TickLabelInterpreter','none');ylabel('Power / ideal N^2 (dB)');legend('Requested target','Refined peak','Location','southoutside');
+title(sprintf('%s (%s) | target versus strongest lobe',dataset,status),'Interpreter','none');
+exportgraphics(fig,fullfile(out,'target_and_peak_gain.png'),'Resolution',180);close(fig);
 end
-
-function [P,d]=af(g,xy,theta,az,k,si,N,target)
-% Use ndgrid for theta rows and azimuth columns.
-[T,Phi]=ndgrid(deg2rad(theta),deg2rad(az));
-dirs=[sin(T(:)).*cos(Phi(:)),sin(T(:)).*sin(Phi(:))];
-z=exp(1i*k*((dirs-si)*xy.'))*g(:); P=reshape(abs(z).^2,numel(theta),numel(az));
-[~,ix]=max(P(:)); [it,ip]=ind2sub(size(P),ix); peak=[theta(it),az(ip)];
-[~,it0]=min(abs(theta-target(1)));[~,ip0]=min(abs(az-target(2)));
-dtheta=deg2rad(peak(1)); dtar=deg2rad(target(1));
-dphi=deg2rad(peak(2)-target(2));
-dotPeak=sin(dtheta)*sin(dtar)*cos(dphi)+cos(dtheta)*cos(dtar);
-d.pointError=acosd(max(-1,min(1,dotPeak)));
-d.gainDb=10*log10(max(P(it0,ip0)/(N*N)^2,1e-12));
-[T,Phi]=ndgrid(deg2rad(theta),deg2rad(az));
-dtar=deg2rad(target(1)); ptar=deg2rad(target(2));
-dotGrid=sin(T).*sin(dtar).*cos(Phi-ptar)+cos(T).*cos(dtar);
-mask=acosd(max(-1,min(1,dotGrid)))>15; Q=P/max(P(:)); d.sideDb=10*log10(max(Q(mask),[],'all'));
-end
-

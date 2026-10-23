@@ -1,0 +1,5 @@
+experiment,mode1_angle_relative_port_u_deg,matching_original_mode,co_polar_complex_difference,status,scope
+D011_fixed0_short,0,2,8.697308689629863e-10,PASS,Port u/v basis verified by controlled rotation; global Cartesian field mapping remains provisional
+D012_fixed0_open,0,2,8.351747297204867e-09,PASS,Port u/v basis verified by controlled rotation; global Cartesian field mapping remains provisional
+D013_fixed90_short,90,1,1.7635307725877391e-09,PASS,Port u/v basis verified by controlled rotation; global Cartesian field mapping remains provisional
+D014_fixed90_open,90,1,4.663637162011498e-10,PASS,Port u/v basis verified by controlled rotation; global Cartesian field mapping remains provisional

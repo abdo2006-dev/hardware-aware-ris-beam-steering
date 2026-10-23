@@ -1,0 +1,5 @@
+{"utc": "2026-10-22T18:32:37.796415Z", "stage": "native_interface_connected", "detail": "[27204]"}
+{"utc": "2026-10-22T18:32:46.888142Z", "stage": "isolated_checkpoint_saved", "detail": "cst\\experiments\\D008_original_OFF_refine8\\D008_original_OFF_refine8.cst"}
+{"utc": "2026-10-22T18:32:48.211421Z", "stage": "configuration_applied", "detail": {"experiment": "D008_original_OFF_refine8", "pid": 27204, "topology": "original", "R": 0.0, "L": 3e-11, "C": 2.5e-14, "prepare_only": false, "mesh_steps": 8.0, "frequency": 26.168, "adaptive": true, "frequency_GHz": 26.168, "status": "PREPARED", "source": "cst/off_assumed_25fF.cst", "mesh": "Manual global refinement: wavelength and diagonal divisions 8.0; adaptive tetrahedral refinement enabled", "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block"}}
+{"utc": "2026-10-22T18:32:48.213825Z", "stage": "solver_started", "detail": "Single solved frequency; both legacy Floquet modes"}
+{"utc": "2026-10-22T18:33:34.702409Z", "stage": "solver_returned", "detail": "No API exception; inspect results before accepting"}

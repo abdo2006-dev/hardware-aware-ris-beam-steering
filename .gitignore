@@ -6,3 +6,30 @@ Thumbs.db
 *.tmp
 *.log
 Temp/
+tmp/
+.pptx-build/
+.codex-finalizer/
+node_modules/
+__pycache__/
+05_Recordings/
+# CST expands each checkpoint beside its compact project file. Preserve these
+# locally; publish the project, transparent CSVs, history and numerical logs.
+cst/off_assumed_25fF/
+cst/experiments/*/*/
+# Native checkpoints embed licensing metadata; preserve privately. Public
+# construction histories, configurations and numerical exports remain available.
+cst/experiments/*/*.cst
+# Failed preparation copies remain local evidence, not runnable deliverables.
+cst/experiments/D000_original_audit/
+cst/experiments/D001_original_short/
+cst/experiments/D002_original_short/
+cst/experiments/*/port_vector_components.csv
+cst/experiments/*/native_port_e*.png
+cst/audit_port_vectors.py
+cst/experiments/*/execution_events.jsonl
+cst/experiments/*/cad_xz_center_section.png
+cst/experiments/*/cad_yz_center_section.png
+output/presentation/RIS_Scientific_Validation.pptx
+# Local slide authoring uses the desktop's bundled document runtime.
+tools/build_presentation.mjs
+tools/finalize_presentation.mjs

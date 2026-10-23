@@ -1,0 +1,140 @@
+22/Oct/2026 22:00:57  *** Warning ***
+                      
+                      Electric isotropic material [Copper_5p8e7S_per_m] has a very high conductivity
+                      for the given mesh. Depending on your configuration it may be better to use a
+                      lossy metal type for this material. More...
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:00:57  In order to get an optimal performance, hyperthreading is ignored for parallel
+                      computations.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:03  *** Warning ***
+                      
+[licensing metadata removed]
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  *** Warning ***
+                      
+[local allocator runtime detail removed]
+[local allocator runtime detail removed]
+[local allocator runtime detail removed]
+                      The solver will continue with a reduced performance.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  Units settings: 
+                      
+                        Dimensions: mm
+                        Frequency:  GHz
+                        Time:       ns
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  Boundary conditions: 
+                      
+                        YZsymmetry: none
+                        XZsymmetry: none
+                        XYsymmetry: none
+                      
+                        Xmin: unit cell
+                        Xmax: unit cell
+                      
+                        Ymin: unit cell
+                        Ymax: unit cell
+                      
+                        Zmin: electric
+                        Zmax: expanded open
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  Order settings: 
+                      
+                        Solver order   : 2nd (constant)
+                        Curved elements: up to order 3 (automatic)
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  *** Warning ***
+                      
+22/Oct/2026 22:01:04  The mesh adaptation has been deactivated. It is strongly recommended to enable the mesh adaptation for the tetrahedral 
+                      mesh unless the problem is very large.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  An iterative solver will be used first.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04    Mesh time                :	6 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  
+                      ================================================================================
+                      Frequency Domain Solver calculation cycle started
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04  Solver started at: 10:01 PM Thursday, 22. October 2026 (Arab Standard Time)
+                      
+                        Module:  Frequency Domain: S-Parameter (Win 64)
+                        Version: 2023.0 Release from 2022-09-12 (change 1015769)
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:04    Calculation 1 of 1 (Frequency: 26.168 GHz, Theta: 0, Phi: 0)
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:05  Performing block excitation with block size 2 and 6 threads.  More...
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15    Matrix setup time        :	0 s
+                        Degrees of freedom       :	18712
+                        Number of mesh cells     :	2910
+                      
+                        Stimulation port         :	Zmax
+                        Mode number              :	1
+                        Accuracy                 :	8.90038e-05
+                        Iterations               :	134
+                        Solver time              :	9 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15    Stimulation port         :	Zmax
+                        Mode number              :	2
+                        Accuracy                 :	9.71416e-05
+                        Iterations               :	115
+                        Solver time              :	8 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15    Total time               :	10 s
+                      
+                      ------------------------------------------------------------------------------
+
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15    Number of mesh cells     :	2910
+                        Degrees of freedom       :	17926
+                        Total Solver Time        :	16 s
+                      ================================================================================
+                      
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15    ----------------------------------------------------------------------------
+                                            Peak memory used (kB)         Free physical memory (kB) 
+                                                                          At begin     Minimum      
+                        ----------------------------------------------------------------------------
+                        Solver start        24144                         4738608      4738608      
+                        Eq. system setup    66880                         4736496      4710316      
+                        Eq. system solve    103332                        4710316      4645932      
+                        Solver run total    103332                        4738608      4645932      
+                      
+[workstation identifier removed]
+                        ----------------------------------------------------------------------------
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:15  Running postprocessing.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:17  Postprocessing finished.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 22:01:17  Creating parametric 1D results for Run ID 1
+                      
+                      ------------------------------------------------------------------------------

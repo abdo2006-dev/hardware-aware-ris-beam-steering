@@ -1,0 +1,211 @@
+22/Oct/2026 21:32:48  *** Warning ***
+                      
+                      Electric isotropic material [Copper_5p8e7S_per_m] has a very high conductivity
+                      for the given mesh. Depending on your configuration it may be better to use a
+                      lossy metal type for this material. More...
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:48  In order to get an optimal performance, hyperthreading is ignored for parallel
+                      computations.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:51  *** Warning ***
+                      
+[licensing metadata removed]
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  *** Warning ***
+                      
+[local allocator runtime detail removed]
+[local allocator runtime detail removed]
+[local allocator runtime detail removed]
+                      The solver will continue with a reduced performance.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  Units settings: 
+                      
+                        Dimensions: mm
+                        Frequency:  GHz
+                        Time:       ns
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  Boundary conditions: 
+                      
+                        YZsymmetry: none
+                        XZsymmetry: none
+                        XYsymmetry: none
+                      
+                        Xmin: unit cell
+                        Xmax: unit cell
+                      
+                        Ymin: unit cell
+                        Ymax: unit cell
+                      
+                        Zmin: electric
+                        Zmax: expanded open
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  Order settings: 
+                      
+                        Solver order   : 2nd (constant)
+                        Curved elements: up to order 3 (automatic)
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  An iterative solver will be used first.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52    Mesh time                :	3 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  
+                      ================================================================================
+                      Frequency Domain Solver calculation cycle started
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:52  Solver started at: 09:32 PM Thursday, 22. October 2026 (Arab Standard Time)
+                      
+                        Module:  Frequency Domain: S-Parameter (Win 64)
+                        Version: 2023.0 Release from 2022-09-12 (change 1015769)
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:53    Calculation 1 of 1 (Frequency: 26.168 GHz, Theta: 0, Phi: 0)
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:53  Adaptive mesh refinement pass 1
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:32:54  Performing block excitation with block size 2 and 6 threads.  More...
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:01    Matrix setup time        :	0 s
+                        Degrees of freedom       :	18712
+                        Number of mesh cells     :	2910
+                      
+                        Stimulation port         :	Zmax
+                        Mode number              :	1
+                        Accuracy                 :	9.07657e-05
+                        Iterations               :	132
+                        Solver time              :	7 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:01    Stimulation port         :	Zmax
+                        Mode number              :	2
+                        Accuracy                 :	9.96448e-05
+                        Iterations               :	120
+                        Solver time              :	7 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:01  *** Warning ***
+                      
+22/Oct/2026 21:33:01  The input reflection seems to be large at 26.168 GHz, Theta: 0, Phi: 0. A constant mesh adaptation sample will not be 
+                      changed.  More...
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:01  44% of all mesh edges seem to be longer than expected. The adaptive mesh refinement's growth limitation will therefore 
+                      use 10611 instead of 2910 mesh cells as a reference.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:03  Adaptive mesh refinement pass 2
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:14    Matrix setup time        :	0 s
+                        Degrees of freedom       :	33492
+                        Number of mesh cells     :	5226
+                      
+                        Stimulation port         :	Zmax
+                        Mode number              :	1
+                        Accuracy                 :	8.22619e-05
+                        Iterations               :	121
+                        Solver time              :	11 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:14    Stimulation port         :	Zmax
+                        Mode number              :	2
+                        Accuracy                 :	9.92423e-05
+                        Iterations               :	103
+                        Solver time              :	10 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:15    Delta calculation        
+22/Oct/2026 21:33:15    All S-Parameters         :	0.298065
+
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:16  Adaptive mesh refinement pass 3
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:29    Matrix setup time        :	0 s
+                        Degrees of freedom       :	39896
+                        Number of mesh cells     :	6232
+                      
+                        Stimulation port         :	Zmax
+                        Mode number              :	1
+                        Accuracy                 :	9.87762e-05
+                        Iterations               :	109
+                        Solver time              :	12 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:29    Stimulation port         :	Zmax
+                        Mode number              :	2
+                        Accuracy                 :	9.57339e-05
+                        Iterations               :	89
+                        Solver time              :	11 s
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:29    Delta calculation        
+22/Oct/2026 21:33:29    All S-Parameters         :	0.0113898
+
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:29  Mesh adaptation terminated because the desired accuracy limit is reached.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:30    Total time               :	36 s
+                      
+                      ------------------------------------------------------------------------------
+
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:30  *** Warning ***
+                      
+22/Oct/2026 21:33:30  The broadband frequency sweep convergence criterion has not yet been satisfied. Please continue the broadband frequency 
+                      sweep by starting the frequency domain solver again with additional (preferably automatically chosen) samples.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:30    Number of mesh cells     :	6232
+                        Degrees of freedom       :	39110
+                        Total Solver Time        :	40 s
+                      ================================================================================
+                      
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:30    ----------------------------------------------------------------------------
+                                            Peak memory used (kB)         Free physical memory (kB) 
+                                                                          At begin     Minimum      
+                        ----------------------------------------------------------------------------
+                        Solver start        24108                         4511752      4509968      
+                        Eq. system setup    156708                        4495084      4447984      
+                        Eq. system solve    177268                        4482088      4332964      
+                        Mesh refinement     156708                        4451040      4438124      
+                        Solver run total    177268                        4511756      4353916      
+                      
+[workstation identifier removed]
+                        ----------------------------------------------------------------------------
+                      
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:31  Running postprocessing.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:32  Postprocessing finished.
+                      
+                      ------------------------------------------------------------------------------
+22/Oct/2026 21:33:32  Creating parametric 1D results for Run ID 1
+                      
+                      ------------------------------------------------------------------------------

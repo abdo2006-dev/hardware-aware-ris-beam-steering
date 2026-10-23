@@ -1,0 +1,9 @@
+experiment,mode,adaptive_pass,max_complex_change,max_magnitude_change_bound,max_phase_change_bound_deg,status,method
+D009_ON_strict,1,10,0.00359815,0.00359815,0.20943167655696393,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D009_ON_strict,1,11,0.00385916,0.00385916,0.22374675204967387,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D009_ON_strict,2,10,0.00359815,0.00359815,0.2077878819594564,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D009_ON_strict,2,11,0.00385916,0.00385916,0.2219974040442418,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D010_OFF_strict,1,10,0.0035903,0.0035903,0.2089751801317162,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D010_OFF_strict,1,11,0.00383553,0.00383553,0.22238248309261258,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D010_OFF_strict,2,10,0.0035903,0.0035903,0.20653939321407452,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"
+D010_OFF_strict,2,11,0.00383553,0.00383553,0.21980036468584987,PASS,"Upper bounds from CST maximum all-S complex difference, not direct individual per-pass trace readings"

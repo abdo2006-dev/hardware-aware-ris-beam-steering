@@ -1,0 +1,19 @@
+{
+  "experiment": "D009_ON_strict",
+  "pid": 27204,
+  "topology": "original",
+  "R": 5.2,
+  "L": 3e-11,
+  "C": 0,
+  "prepare_only": false,
+  "mesh_steps": null,
+  "frequency": 26.168,
+  "adaptive": true,
+  "source": "cst/off_assumed_25fF.cst",
+  "strict_adaptive": true,
+  "frequency_GHz": 26.168,
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "mesh": "Legacy initial tetrahedral mesh; adaptation disabled for controlled diagnostic; adaptive tetrahedral refinement enabled; max complex Delta S 0.005 for two checks, max 12 passes",
+  "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block",
+  "checkpoint_sha256": "12039a3b0c5e60ea1cf66f64ecac54390d9576f478fdd47f6f75bb45b47f5820"
+}

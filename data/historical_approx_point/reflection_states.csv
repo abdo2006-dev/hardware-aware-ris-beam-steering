@@ -1,0 +1,3 @@
+frequency_GHz,state,real,imag,source,validation_status
+26.168,0,0.756490323462453,0.591035016312632,paper Fig.2 approximate visual point,PROVISIONAL
+26.168,1,-0.676023638655525,-0.300985115876092,paper Fig.2 approximate visual point,PROVISIONAL

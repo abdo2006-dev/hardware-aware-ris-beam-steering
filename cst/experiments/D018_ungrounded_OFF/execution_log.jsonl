@@ -1,0 +1,5 @@
+{"utc": "2026-10-23T17:31:08.744268Z", "stage": "native_interface_connected", "detail": "See configuration.json and diagnostic_history.bas for the saved configuration"}
+{"utc": "2026-10-23T17:31:18.907332Z", "stage": "isolated_checkpoint_saved", "detail": "See configuration.json and diagnostic_history.bas for the saved configuration"}
+{"utc": "2026-10-23T17:31:20.624507Z", "stage": "configuration_applied", "detail": "See configuration.json and diagnostic_history.bas for the saved configuration"}
+{"utc": "2026-10-23T17:31:20.635760Z", "stage": "solver_started", "detail": "Single solved frequency; both legacy Floquet modes"}
+{"utc": "2026-10-23T17:31:40.210112Z", "stage": "solver_returned", "detail": "No API exception; inspect results before accepting"}

@@ -1,0 +1,5 @@
+topology,mode,frequency_GHz,short_checkpoint,open_checkpoint,complex_delta,wrapped_phase_difference_deg,magnitude_difference
+original,1,26.168,D003_original_short,D004_original_open,2.6179017198826356e-05,0.0015090344090482079,1.1381960943745995e-06
+original,2,26.168,D003_original_short,D004_original_open,0.14743786783323753,8.456462473458966,1.528473061795932e-05
+connected,1,26.168,D005_connected_short,D006_connected_open,4.8938582237486575e-05,0.0028197834651208873,2.783577095599732e-06
+connected,2,26.168,D005_connected_short,D006_connected_open,0.17615400261544742,10.10757038602461,3.5406290168182863e-05

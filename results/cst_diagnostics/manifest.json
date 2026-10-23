@@ -1,0 +1,26 @@
+{
+  "generator": "tools/analyze_diagnostics.py",
+  "scope": "Actual saved CST diagnostic data; not paper reproduction or physical measurement",
+  "files": {
+    "cst\\experiments\\D003_original_short\\complex_sparameters.csv": "caaf87f61cfc9fadd69a9a9f1c261888d648d418b5694fb06114741e9f2ac68a",
+    "cst\\experiments\\D004_original_open\\complex_sparameters.csv": "5694e3134c0d080fe7acd0d63da2a0950a22313e2cdd955ff78b1fde669567b9",
+    "cst\\experiments\\D005_connected_short\\complex_sparameters.csv": "70e2685d8b8c7b52aacc66e4b9d2e98b3e0cba2f9c9e46eaf32aa1ceb5df5d00",
+    "cst\\experiments\\D006_connected_open\\complex_sparameters.csv": "a0cad161828736e1703a052bb2bdc66eaf49595fb79c6649955de4b9328bea29",
+    "cst\\experiments\\D007_original_ON_refine8\\complex_sparameters.csv": "5f2ea57af859c50b0c5f813e008b33f6114af9966f30d0f5309808c02e1d3caf",
+    "cst\\experiments\\D008_original_OFF_refine8\\complex_sparameters.csv": "6e52e36dfe1855fe32bc7493af7b2943ffed905c3e42efbdfc997052dbb0a669",
+    "cst\\experiments\\D009_ON_strict\\complex_sparameters.csv": "f995bcf69b2f8304db1d43e51949b238949e23a8d4018fe73eb5f119ac76cfb8",
+    "cst\\experiments\\D010_OFF_strict\\complex_sparameters.csv": "6dddd37d01b5542b3d7b0d8c76a20a8ec6222bb131fef3a96ce027c5b81e8785",
+    "cst\\experiments\\D011_fixed0_short\\complex_sparameters.csv": "70fae6ed8790024ffd4a240c154bd7b97d838f4a51802da531a4869b3de4f1b4",
+    "cst\\experiments\\D012_fixed0_open\\complex_sparameters.csv": "cea43d1aef5934688c46fcdfc848e508dc7ce22bd3211f093d99e7f22e08f5aa",
+    "cst\\experiments\\D013_fixed90_short\\complex_sparameters.csv": "5fd8b127afccb20f234aee0ba15c2a1d2314cf20d4b15ec5116cd9aa95ad5a7f",
+    "cst\\experiments\\D014_fixed90_open\\complex_sparameters.csv": "b9b06ecdd8ad3e9d21ca96e7e38c054f20ab893c754e21c79a8a37e71162774a",
+    "cst\\experiments\\D015_ON_direct_band\\complex_sparameters.csv": "0c63651c078e947c66b20a8153cd8035586131527e14e24d1cd099556d5b531b",
+    "cst\\experiments\\D016_OFF_direct_band\\complex_sparameters.csv": "4cadab96b88cba0dcfdd136156891a3a293e4d013eb06c96432ac297c150f182",
+    "cst\\experiments\\D017_ungrounded_ON\\complex_sparameters.csv": "81427dc1ac9c78b0d0478a44a59b2bfdc951fbbf352ef64a0805abf2c552d8a2",
+    "cst\\experiments\\D018_ungrounded_OFF\\complex_sparameters.csv": "f11fbc627d7c82ebeb53bc37d2dbb0b0f012b25681de6b18bc228d3fd2cd53be"
+  },
+  "maximum_abs_power_balance_relative_residual": 7.281762020375226e-07,
+  "maximum_VI_relative_error": 2.6585512032143665e-16,
+  "all_two_mode_passivity_screens_pass": true,
+  "passivity_definition": "Sum of both reflected and, where present, both transmitted fundamental modes; not a loss estimate from reflection alone"
+}

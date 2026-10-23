@@ -1,0 +1,22 @@
+{
+  "experiment": "D012_fixed0_open",
+  "pid": 27204,
+  "topology": "original",
+  "R": 1000000000.0,
+  "L": 0,
+  "C": 0,
+  "prepare_only": false,
+  "mesh_steps": null,
+  "frequency": 26.168,
+  "adaptive": false,
+  "source": "cst/off_assumed_25fF.cst",
+  "strict_adaptive": false,
+  "polarization_angle": 0.0,
+  "frequency_GHz": 26.168,
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "mesh": "Source checkpoint tetrahedral mesh; adaptation disabled for initial controlled diagnostic",
+  "source_sha256": "b49b16ad2449eb02fbf4228022ce511180c6825606ef1bdd5815460914868851",
+  "polarization": "Mode 1 fixed at 0.0 degrees relative to port u axis; normal incidence",
+  "load_values_location": "Literal values in final diagnostic LumpedElement.Modify history block; legacy Rload/Lload/Cload parameters are not used by that block",
+  "checkpoint_sha256": "aae903debb33a55c73244462ba2846e0a2c4f640e0d04335fcee082ef6f3d767"
+}

@@ -1,0 +1,28 @@
+{
+  "dataset": "cst_simulated_hardware",
+  "validation_status": "PROVISIONAL",
+  "source_files": [
+    "cst_baseline_complex_sparameters.csv",
+    "cst_off_assumed_25fF_complex_sparameters.csv"
+  ],
+  "source_sha256": [
+    "f8732fd9b5732eda865bc65a5a788ed232ebc53c23085d830588e6942ba2e9a0",
+    "b273b12067f1a7d7c887db267ccdc6f0e4caef6d01b03be96beb7639dd6bfa19"
+  ],
+  "checkpoints": [
+    "baseline_on_proxy.cst",
+    "off_assumed_25fF.cst"
+  ],
+  "mode": 1,
+  "polarization": "UNVERIFIED physical polarization; legacy Floquet mode 1",
+  "cst_trace": "SZmax(1),Zmax(1)",
+  "interpolation": "Linear interpolation of real and imaginary coefficients; no extrapolation",
+  "frequency_grid_GHz": [
+    24,
+    30.000000000000004
+  ],
+  "rows_per_state": 1002,
+  "generator": "matlab/convert_cst_exports.m",
+  "generator_sha256": "9fee4e91279fb3f3767aa145c82f5012c3599003a03ad5b3ef8abc610422eb32",
+  "note": "Existing proxies; co-mode identity only. Physical polarization, connectivity, circuit validity and mesh convergence remain unverified. The 1001 raw sweep points are interpolated from 8 calculated adaptive samples."
+}

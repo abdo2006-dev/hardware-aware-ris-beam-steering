@@ -1,0 +1,22 @@
+{
+  "dataset": "cst_simulated_hardware",
+  "generator": "matlab/convert_diagnostic_pair.m",
+  "validation_status": "PROVISIONAL",
+  "source": [
+    {
+      "state": 0,
+      "file": "C:\\Users\\loloa\\Documents\\Codex\\2026-10-21\\files-mentioned-by-the-user-realistic\\research-validation\\cst\\experiments\\D009_ON_strict\\complex_sparameters.csv",
+      "sha256": "f995bcf69b2f8304db1d43e51949b238949e23a8d4018fe73eb5f119ac76cfb8"
+    },
+    {
+      "state": 1,
+      "file": "C:\\Users\\loloa\\Documents\\Codex\\2026-10-21\\files-mentioned-by-the-user-realistic\\research-validation\\cst\\experiments\\D010_OFF_strict\\complex_sparameters.csv",
+      "sha256": "6dddd37d01b5542b3d7b0d8c76a20a8ec6222bb131fef3a96ce027c5b81e8785"
+    }
+  ],
+  "floquet_mode": 2,
+  "co_polar_trace": "SZmax(2),Zmax(2)",
+  "frequency_GHz": 26.168,
+  "interpolation": "Exact single-frequency data; no extrapolation",
+  "scope": "Both runs meet strict CST all-S adaptation criterion. Source geometry, diode calibration and Cartesian polarization require additional evidence; no full physical validation is implied."
+}

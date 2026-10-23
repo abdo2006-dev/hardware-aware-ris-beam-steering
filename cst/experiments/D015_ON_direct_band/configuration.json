@@ -1,0 +1,22 @@
+{
+  "experiment": "D015_ON_direct_band",
+  "source": "cst\\experiments\\D009_ON_strict\\D009_ON_strict.cst",
+  "source_sha256": "12039a3b0c5e60ea1cf66f64ecac54390d9576f478fdd47f6f75bb45b47f5820",
+  "direct_frequencies_GHz": [
+    24,
+    25,
+    26,
+    26.168,
+    27,
+    28,
+    29,
+    30
+  ],
+  "status": "SOLVER_COMPLETED_NOT_YET_VALIDATED",
+  "scope": "Frequency diagnostic; inspect actual mesh and sample logs; physical geometry and diode remain provisional",
+  "R": 5.2,
+  "L": 3e-11,
+  "C": 0,
+  "topology": "original",
+  "started_UTC": "2026-10-22T19:24:56.128889Z"
+}
