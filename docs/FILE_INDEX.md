@@ -6,7 +6,7 @@ Compared with baseline `4d61322a2864f6540cac1c53baa1eb6080cee4db`. Ignored recor
 |---|---|---:|---|
 | created | .gitattributes | 165 | d99dec078db15e02ef0a348804e2dc5fa0291413cc2a5d7044dcc17402f33664 |
 | modified | .gitignore | 1125 | 60a92cfcc97f1e12ce7f9019326e469280502d88c0192134612304ac88ffeb3e |
-| modified | README.md | 16847 | ae4efe9f3794bec3418e2c45bf9d2bed594f8886b106026d67da35b2faa54efc |
+| modified | README.md | 22711 | 7c9bc53520f7a0f8ee8b6aed57c9774a33ff52a7423cabc5ae1e00fab001c86f |
 | created | cst/experiments/D003_original_short/complex_sparameters.csv | 629 | caaf87f61cfc9fadd69a9a9f1c261888d648d418b5694fb06114741e9f2ac68a |
 | created | cst/experiments/D003_original_short/configuration.json | 618 | 4367d74fa9a4dab24f8b194c41aea77f8d02b1bc007967340b96bc196e1aeac0 |
 | created | cst/experiments/D003_original_short/diagnostic_history.bas | 642 | 5ba9972bac532f6af50f7a943211fcf15d25145ad3745d8dc1a436c074065907 |
@@ -174,10 +174,22 @@ Compared with baseline `4d61322a2864f6540cac1c53baa1eb6080cee4db`. Ignored recor
 | created | docs/ASSUMPTIONS.md | 2981 | 35ca88679005f60afb5232a3991f0eb9d771c52b4ad0e0169b5c19fb63768e7a |
 | created | docs/CST_PHYSICAL_AUDIT.md | 6183 | d8961e245783ed93bffffb7fd015df2394b3f468f26405bff6fba884221ae072 |
 | created | docs/SCIENTIFIC_VALIDATION.md | 6709 | be0b714c2d8e6130e2c9aea99903c50bb68d5f4358a74014435e0b8cae06bf75 |
-| created | docs/VERIFICATION_STATUS.md | 9366 | c487f1072c77587660cb6f177c9e95111dd45ebbbf9e23e5a876333bfb88876c |
+| created | docs/VERIFICATION_STATUS.md | 9559 | 599409522cddc87595f146493b67d50f58e93a41b4804b64a8ee8fc4ca625291 |
 | created | docs/audit/baseline_inventory.json | 8925 | ad453788a854471b34e7c2d5ab403ce3248673b0087e97bee14097e8ec8a1052 |
-| created | docs/audit/repair_log.md | 6685 | 1851f6279b1d121018f329b08793060556c654e06c3ce44ea89751fd85f21214 |
+| created | docs/audit/repair_log.md | 7136 | 8f05ecabedbb120b512548cc3fbc79d6f47b02dad290f82f446f166559f408f7 |
 | created | docs/history/README_main_4d61322.md | 15122 | 9660e76e691f8a3e4132e18fe0ec049f0235e0e0ad21b6d2394eab0043b8f59c |
+| created | figures/cst/back_xy.png | 33318 | 41c928d9fa08b8163570c8de9c59102ee641285ce728c01b996e0a0900a1be19 |
+| created | figures/cst/bottom_xz.png | 8083 | 3b7878432aa2f7e3c65a0614aeb67822d2c83259e8108440ff76fc8a076daddf |
+| created | figures/cst/boundaries.png | 68357 | a7c7b7e67a7e4a908ea948b1f169dac5892bbd61885b00c0f5d59bfc42d35ee0 |
+| created | figures/cst/capture_provenance.json | 5811 | e826f1489bc7565c6eb8cba685f669e181d358e8e61206ee85d8e458ea8aca9a |
+| created | figures/cst/floquet_port.png | 56546 | b2db03a1be456658aa58de7eb436b0ca70cedb72b6497b07168122794434c342 |
+| created | figures/cst/front_xy.png | 42073 | d597eef660d92c6b419b6395c96ed3dcdb2b03fafa0bc1b85c7aea10765a6731 |
+| created | figures/cst/left_yz.png | 8404 | 4c89f6532b00cba2cb282d6811e71ad7a83a9ddb9be4b0e17c80896129ababe6 |
+| created | figures/cst/orthogonal_views.png | 94531 | a61c647384d5ac1a0598503449accb2dfb45c58c9af425335841ad2f543a7d8f |
+| created | figures/cst/perspective.png | 190172 | 59b94576178d82c44ac6d587a6380826bfb7e9be92c0aba7497027a24e0b7d2f |
+| created | figures/cst/right_yz.png | 12195 | 46536471655c5f3e3dab107bf47edc8462006c21a909eb5c4a05eea7a8fac720 |
+| created | figures/cst/solver.png | 183899 | 0a2c85fa4ca5d5a68ac1a2254f6af799bcef617a7707dce8fa2e1fb3db9bff9e |
+| created | figures/cst/top_xz.png | 9367 | 52d536cfefd7aec643187779df7c9f3ee4133739aaf92faccaf3db2c4bc2d67f |
 | created | matlab/convert_cst_exports.m | 3092 | 9fee4e91279fb3f3767aa145c82f5012c3599003a03ad5b3ef8abc610422eb32 |
 | created | matlab/convert_diagnostic_pair.m | 1775 | ba97b57faa0c2d10ac3d7a3e93616f82dd3438a3d1a9f7f7c62bfe38568ec265 |
 | created | matlab/plot_cst_diagnostics.m | 4151 | b54238ec5812d7a8fde6fc4e9c08c8c35213fb933aa75ebdf669a035cc5cd381 |

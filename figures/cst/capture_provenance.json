@@ -1,0 +1,153 @@
+{
+  "scope": "Actual CST 2023 application captures from geometry inspection on 23 October 2026. Geometry is the original grounded topology. These D015/D016 views are coarse band checkpoints and do not prove strict mesh convergence. No simulated numbers or geometry pixels were synthesized.",
+  "images": [
+    {
+      "file": "perspective.png",
+      "source_capture": "58_cst_off_perspective_complete.png",
+      "source_capture_sha256": "3bf4c7fbc2dbf521a2d807792f674e12263c87123b96c8f764187f2b10fd64a7",
+      "crop_pixels": [
+        870,
+        200,
+        1440,
+        780
+      ],
+      "CST_project": "D016_OFF_direct_band",
+      "description": "Perspective view of the original grounded topology",
+      "capture_date": "2026-10-23",
+      "sha256": "59b94576178d82c44ac6d587a6380826bfb7e9be92c0aba7497027a24e0b7d2f"
+    },
+    {
+      "file": "front_xy.png",
+      "source_capture": "27_cst_front_view.png",
+      "source_capture_sha256": "41454b53a3514059dd7664a92e6e526aaafb99cad792f68cd5be53996a4e30f9",
+      "crop_pixels": [
+        950,
+        195,
+        1640,
+        835
+      ],
+      "CST_project": "D015_ON_direct_band",
+      "description": "Front XY view of the slotted patch and central load",
+      "capture_date": "2026-10-23",
+      "sha256": "d597eef660d92c6b419b6395c96ed3dcdb2b03fafa0bc1b85c7aea10765a6731"
+    },
+    {
+      "file": "back_xy.png",
+      "source_capture": "59_cst_back_view.png",
+      "source_capture_sha256": "a432c1aaa49b1b56ae43cf5a9ef801ca7d0e47b92f0e84e13fd06e29aa9a4054",
+      "crop_pixels": [
+        900,
+        220,
+        1450,
+        740
+      ],
+      "CST_project": "D016_OFF_direct_band",
+      "description": "Back XY view with continuous copper backplane",
+      "capture_date": "2026-10-23",
+      "sha256": "41c928d9fa08b8163570c8de9c59102ee641285ce728c01b996e0a0900a1be19"
+    },
+    {
+      "file": "top_xz.png",
+      "source_capture": "28_cst_top_xz_view.png",
+      "source_capture_sha256": "0c8cabbf95a5e01e3994fe8e45bf949d2999a146aaf44aaafa046860c7042b2a",
+      "crop_pixels": [
+        940,
+        450,
+        1660,
+        650
+      ],
+      "CST_project": "D015_ON_direct_band",
+      "description": "Top XZ side profile",
+      "capture_date": "2026-10-23",
+      "sha256": "52d536cfefd7aec643187779df7c9f3ee4133739aaf92faccaf3db2c4bc2d67f"
+    },
+    {
+      "file": "right_yz.png",
+      "source_capture": "29_cst_right_yz_view.png",
+      "source_capture_sha256": "3a2cffdedf4ebed03c54177b2026d12dfafa1f20a8077567d4e373f3099023c6",
+      "crop_pixels": [
+        1140,
+        195,
+        1390,
+        840
+      ],
+      "CST_project": "D015_ON_direct_band",
+      "description": "Right YZ side profile",
+      "capture_date": "2026-10-23",
+      "sha256": "46536471655c5f3e3dab107bf47edc8462006c21a909eb5c4a05eea7a8fac720"
+    },
+    {
+      "file": "left_yz.png",
+      "source_capture": "60_cst_left_view.png",
+      "source_capture_sha256": "5a3a439c0a13865526a6a82d20810b2b6c1f24b62d52eb8ab5f49279e5aba655",
+      "crop_pixels": [
+        1120,
+        220,
+        1290,
+        730
+      ],
+      "CST_project": "D016_OFF_direct_band",
+      "description": "Left YZ side profile",
+      "capture_date": "2026-10-23",
+      "sha256": "4c89f6532b00cba2cb282d6811e71ad7a83a9ddb9be4b0e17c80896129ababe6"
+    },
+    {
+      "file": "bottom_xz.png",
+      "source_capture": "61_cst_bottom_view.png",
+      "source_capture_sha256": "a50d275f6975944b02a56087f54bc8b0a90c992c9b2992fa3154aaf991adc014",
+      "crop_pixels": [
+        900,
+        380,
+        1440,
+        520
+      ],
+      "CST_project": "D016_OFF_direct_band",
+      "description": "Bottom XZ side profile",
+      "capture_date": "2026-10-23",
+      "sha256": "3b7878432aa2f7e3c65a0614aeb67822d2c83259e8108440ff76fc8a076daddf"
+    },
+    {
+      "file": "boundaries.png",
+      "source_capture": "10_cst_boundaries_detail.png",
+      "source_capture_sha256": "7ec21b0b99c9b240c685a952c7e4ed9a44a7d28c05ad36cf62acd956f6b9ccbb",
+      "crop_pixels": null,
+      "CST_project": "D009_ON_strict",
+      "description": "Periodic XY, electric Zmin and open Zmax boundary dialog",
+      "capture_date": "2026-10-23",
+      "sha256": "a7c7b7e67a7e4a908ea948b1f169dac5892bbd61885b00c0f5d59bfc42d35ee0"
+    },
+    {
+      "file": "floquet_port.png",
+      "source_capture": "39_cst_floquet_port_detail.png",
+      "source_capture_sha256": "06cc8303e3c8148cfb7a3ad711bcd124391f4c2ad31ec8e91d31c4fed6538543",
+      "crop_pixels": null,
+      "CST_project": "D015_ON_direct_band",
+      "description": "Two Zmax Floquet modes and zero reference plane distance",
+      "capture_date": "2026-10-23",
+      "sha256": "b2db03a1be456658aa58de7eb436b0ca70cedb72b6497b07168122794434c342"
+    },
+    {
+      "file": "solver.png",
+      "source_capture": "14_cst_solver_detail.png",
+      "source_capture_sha256": "98f73b2e518a33e830c33e6e11e35c316a9d0b3fb6afe80c0bd20ead4cd33169",
+      "crop_pixels": null,
+      "CST_project": "D009_ON_strict",
+      "description": "Single frequency adaptive tetrahedral solver settings",
+      "capture_date": "2026-10-23",
+      "sha256": "0a2c85fa4ca5d5a68ac1a2254f6af799bcef617a7707dce8fa2e1fb3db9bff9e"
+    },
+    {
+      "file": "orthogonal_views.png",
+      "sources": [
+        "front_xy.png",
+        "back_xy.png",
+        "right_yz.png",
+        "left_yz.png",
+        "top_xz.png",
+        "bottom_xz.png"
+      ],
+      "method": "Six actual viewport crops fitted without aspect ratio distortion onto a labeled white canvas; views are not displayed to one common scale",
+      "sha256": "a61c647384d5ac1a0598503449accb2dfb45c58c9af425335841ad2f543a7d8f"
+    }
+  ]
+}

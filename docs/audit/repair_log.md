@@ -89,3 +89,7 @@ gates. No physical measurements or validated finite-array RCS are claimed.
 Automatic review identified workstation names in the solver logs. The public-copy redaction now handles the native colon-free format and removes licensing and allocator implementation metadata. Native result logs remain intact in ignored local folders. Numerical frequencies, mesh sizes, coefficients and convergence values are unchanged. The public repair snapshot excludes the earlier local commit containing those unredacted copies.
 
 - Automatic review separately blocked public native CST archive uploads due to embedded licensing metadata. All new native checkpoints remain private and preserved. Public reconstruction histories and numerical evidence remain available; the baseline is unchanged.
+
+## 24 October 2026 - repository presentation and consolidation
+
+Consolidated the research repair history into main. The expanded README uses actual six-view CST geometry, settings captures, captioned paper/CST comparisons and separate MATLAB results for paper-derived and strict CST-derived states. Capture sources and crops are documented in figures/cst/capture_provenance.json. Both branch tips were preserved in a local Git bundle. No new electromagnetic solves or stronger physical-validation claims accompany this documentation change.

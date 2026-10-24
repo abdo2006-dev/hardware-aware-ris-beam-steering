@@ -4,7 +4,7 @@
 
 | Requirement | Status | Evidence and limit |
 |---|---|---|
-| Preserve original project and main | PASS | Baseline inventory; archive outside clone; repair branch; original CST files unchanged |
+| Preserve original project and main | PASS | Baseline inventory; archive outside clone; historical commits retained in consolidated main; original CST files unchanged |
 | Analytical shapes, steering and limiting cases | PASS | 15 MATLAB tests, including rejecting 400-by-400 coefficients |
 | Exact zero perturbation and zero frequency offset | PASS | Shared evaluator gives zero noise difference; exact-frequency importer regression |
 | Coordinate and metric corrections | PASS | Polar-angle convention, full hemisphere, target/peak split, solid-angle weights |
@@ -123,3 +123,8 @@ See [ground-test numbers](../results/cst_diagnostics/ungrounded_comparison.csv),
 ## Public native-file restriction
 
 Automatic publication review rejected new native CST archives because they embed license-identifying metadata. All 16 native checkpoints remain preserved locally. Their configurations, construction histories, source hashes, numerical exports and redacted solver logs are public. No archive bytes or private native result folders are published in the repair snapshot. Original baseline files remain unchanged.
+
+
+## Repository consolidation, 24 October 2026
+
+The completed research repair work and expanded README with actual CST captures are consolidated into main. This publication change does not alter the physical acceptance gates above. Earlier main and repair commits remain in history.
